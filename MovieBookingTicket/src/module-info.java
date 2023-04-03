@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author bcamaster
- *
- */
-module MovieBookingTicket {
-}
