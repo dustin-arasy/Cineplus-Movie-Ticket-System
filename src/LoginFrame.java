@@ -81,12 +81,12 @@ class Login extends JFrame implements ActionListener {
             userText = userTextField.getText();
             pwdText = passwordField.getText();
             for (int i = 0; i < users.size(); i++) {
-                if (userText.equalsIgnoreCase(users.get(i).getUsername()) && pwdText.equalsIgnoreCase(users.get(i).getPassword())) {
+                if (userText.equals(users.get(i).getUsername()) && pwdText.equals(users.get(i).getPassword())) {
                     JOptionPane.showMessageDialog(this, "Login Successful");
                     new RegisterFrame(users);
                     dispose();
                     break;
-                } else {
+                } else if(!userText.equals(users.get(i).getUsername()) && !pwdText.equals(users.get(i).getPassword())) {
                     JOptionPane.showMessageDialog(this, "Invalid Username or Password");
                 }
             }
@@ -117,8 +117,6 @@ class Login extends JFrame implements ActionListener {
 public class LoginFrame {
     public static void main(String[] a) {
         Database datas = new Database();
-//        datas.getUsers().add(new User("adminku", "12321", "Budi"));
-//        datas.getUsers().add(new User("usersku", "321123", "Anto"));
         new LoginFrame(datas.getUsers());
     }
     public LoginFrame(ArrayList<User> users){
