@@ -7,10 +7,9 @@ import java.util.ArrayList;
 class Homepage extends JFrame implements ActionListener {
 
     Container container = getContentPane();
-    private JLabel titlePage = new JLabel("CINEMA TICKET SYSTEM");
-    private JLabel orLabel = new JLabel("or");
-    private JButton registButton = new JButton("REGISTER");
-    private JButton loginButton = new JButton("LOGIN");
+    private JButton registButton = new JButton();
+    private JButton loginButton = new JButton();
+    private JPanel bgphoto = new JPanel();
     private ArrayList<User> users = new ArrayList<>();
 
     Homepage(ArrayList<User> users){
@@ -19,23 +18,36 @@ class Homepage extends JFrame implements ActionListener {
         setLocationandSize();
         addActionEvent();
         addComponentToContainer();
+        setBgphoto();
+        setButton();
+    }
+    public void setButton(){
+        registButton.setBorderPainted(false);
+        registButton.setFocusable(false);
+        registButton.setContentAreaFilled(false);
+        loginButton.setBorderPainted(false);
+        loginButton.setFocusable(false);
+        loginButton.setContentAreaFilled(false);
+    }
+    public void setBgphoto(){
+        bgphoto.setBounds(-7, -12, 960, 515);
+        ImageIcon images = new ImageIcon("src/Images/homepagebg.png");
+        JLabel label = new JLabel(images);
+        bgphoto.add(label);
     }
 
     public void setLayoutManager() {
         container.setLayout(null);
     }
     public void addComponentToContainer(){
-        container.add(titlePage);
-        container.add(orLabel);
         container.add(registButton);
         container.add(loginButton);
+        container.add(bgphoto);
     }
 
     public void setLocationandSize(){
-        titlePage.setBounds(80, 40, 200, 30);
-        registButton.setBounds(50, 110, 200, 30);
-        orLabel.setBounds(150, 160, 200, 30);
-        loginButton.setBounds(50, 210, 200, 30);
+        registButton.setBounds(375, 200, 200, 30);
+        loginButton.setBounds(375, 325, 200, 30);
     }
 
     public void addActionEvent(){
@@ -67,8 +79,9 @@ public class HomepageFrame {
     public HomepageFrame(ArrayList<User> users){
         Homepage frame = new Homepage(users);
         frame.setTitle("Homepage");
-        frame.setSize(350, 400);
+        frame.setSize(960, 540);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
 }

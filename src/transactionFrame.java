@@ -1,2 +1,5 @@
-public class transactionFrame {
+import javax.swing.*;
+
+public class transactionFrame extends JFrame {
+
 }
