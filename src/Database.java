@@ -8,5 +8,17 @@ public class Database {
         return users;
     }
 
+    public ArrayList<cityListFrame> getListCity() {
+        return listCity;
+    }
+
+    public ArrayList<filmListFrame> getFilmList() {
+        return filmList;
+    }
+
+    private ArrayList<cityListFrame> listCity = new ArrayList<>();
+
+    private ArrayList<filmListFrame> filmList = new ArrayList<>();
+
 
 }
