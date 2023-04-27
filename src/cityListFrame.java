@@ -7,7 +7,7 @@ import java.util.ArrayList;
 class cityList extends JFrame implements ActionListener {
 
     Container container = getContentPane();
-    private JLabel titlelabel1 = new JLabel("CITY LIST CINEPLUS");
+    private JLabel titlelabel1 = new JLabel("CITY LIST CINEPLUS+");
     private JLabel titleLabel = new JLabel("Please Choose Your City");
     private JLabel nameLabel = new JLabel("City");
     String[] city = {"Aceh" ,"Bandung" ,"Bogor","Denpasar" ,"Jakarta" ,"Malang","Makassar",
@@ -117,7 +117,7 @@ public class cityListFrame {
 
     public cityListFrame(ArrayList<User> users) {
         cityList frame = new cityList(users);
-        frame.setTitle("City List Form");
+        frame.setTitle("CINEPLUS+");
         frame.setVisible(true);
         frame.setBounds(10, 10, 1000, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
