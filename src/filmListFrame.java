@@ -171,7 +171,7 @@ public class filmListFrame {
 
     public filmListFrame(ArrayList<filmListFrame> filmList , ArrayList<User> users) {
         Film frame = new Film(filmList , users);
-        frame.setTitle("Film List Form");
+        frame.setTitle("CINEPLUS+");
         frame.setVisible(true);
         frame.setBounds(10, 10, 1000, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

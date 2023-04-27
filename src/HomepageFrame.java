@@ -71,17 +71,18 @@ class Homepage extends JFrame implements ActionListener {
     }
 
 public class HomepageFrame {
-    public static void main(String[] args) {
-        Database datas = new Database();
-        new HomepageFrame(datas.getUsers());
-    }
-
     public HomepageFrame(ArrayList<User> users){
         Homepage frame = new Homepage(users);
-        frame.setTitle("Homepage");
+        frame.setTitle("CINEPLUS+");
         frame.setSize(960, 540);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
     }
+    public static void main(String[] args) {
+        Database datas = new Database();
+        new HomepageFrame(datas.getUsers());
+    }
+
+
 }

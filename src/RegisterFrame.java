@@ -40,17 +40,17 @@ class Register extends JFrame implements ActionListener {
 
     }
     public void setTextComponent(){
-        nameLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        userLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        passwordLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        conpasswordLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        showPassword.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        showConPassword.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        titlelabel1.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        titleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-        registerButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        loginButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        resetButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        nameLabel.setFont(new Font("Space Grotesk", Font.BOLD, 14));
+        userLabel.setFont(new Font("Space Grotesk", Font.BOLD, 14));
+        passwordLabel.setFont(new Font("Space Grotesk", Font.BOLD, 14));
+        conpasswordLabel.setFont(new Font("Space Grotesk", Font.BOLD, 14));
+        showPassword.setFont(new Font("Space Grotesk", Font.BOLD, 14));
+        showConPassword.setFont(new Font("Space Grotesk", Font.BOLD, 14));
+        titlelabel1.setFont(new Font("Space Grotesk", Font.BOLD, 20));
+        titleLabel.setFont(new Font("Space Grotesk", Font.PLAIN, 14));
+        registerButton.setFont(new Font("Space Grotesk", Font.BOLD, 14));
+        loginButton.setFont(new Font("Space Grotesk", Font.BOLD, 14));
+        resetButton.setFont(new Font("Space Grotesk", Font.BOLD, 14));
     }
     public void setAllButton(){
         showPassword.setOpaque(false);
@@ -110,7 +110,7 @@ class Register extends JFrame implements ActionListener {
 
     public void setLocationAndSize() {
         titlelabel1.setBounds(140, 40, 400, 30);
-        titleLabel.setBounds(140, 65, 400, 30);
+        titleLabel.setBounds(130, 65, 400, 30);
         nameLabel.setBounds(120, 110, 100, 30);
         userLabel.setBounds(120, 160, 100, 30);
         passwordLabel.setBounds(120, 200, 100, 30);
@@ -222,19 +222,20 @@ class Register extends JFrame implements ActionListener {
 }
 
 public class RegisterFrame {
-    public static void main(String[] a) {
-        Database datas = new Database();
-        new RegisterFrame(datas.getUsers());
-    }
-
     public  RegisterFrame(ArrayList<User> users){
         Register frame = new Register(users);
-        frame.setTitle("Register Form");
+        frame.setTitle("CINEPLUS+");
         frame.setVisible(true);
         frame.setBounds(10, 10, 1000, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
     }
+    public static void main(String[] a) {
+        Database datas = new Database();
+        new RegisterFrame(datas.getUsers());
+    }
+
+
 
 }
