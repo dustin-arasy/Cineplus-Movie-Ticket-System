@@ -1,2 +1,185 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
+
+class Seat extends JFrame implements ActionListener{
+    Container container = getContentPane();
+    private JLabel labelRegular = new JLabel("Regular 30.000");
+    private JLabel labelSweetBox = new JLabel("Sweetbox 35.000");
+    private String[] regular = new String[] {
+
+            "J3", "J4", "J5", "J6", "J7", "J8", "J9", "J10", "J11", "J12", "J13",
+            "I3", "I4", "I5", "I6", "I7", "I8", "I9", "I10", "I11", "I12", "I13",
+            "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12", "H13",
+            "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "G11", "G12", "G13",
+            "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "F13",
+            "E3", "E4", "E5", "E6", "E7", "E8", "E9", "E10", "E11", "E12", "E13",
+            "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "D11", "D12", "D13",
+            "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10", "C11", "C12", "C13",
+            "B3", "B4", "B5", "B6", "B7", "B8", "B9", "B10", "B11", "B12", "B13",
+
+    };
+    private String[] regularLeft = new String[]{
+            "J1", "J2",
+            "I1", "I2",
+            "H1", "H2",
+            "G1", "G2",
+            "F1", "F2",
+            "E1", "E2",
+            "D1", "D2",
+            "C1", "C2",
+            "B1", "B2",
+    };
+
+    private String[] regularRight = new String[]{
+            "J14", "J15",
+            "I14", "I15",
+            "H14", "H15",
+            "G14", "G15",
+            "F14", "F15",
+            "E14", "E15",
+            "D14", "D15",
+            "C14", "C15",
+            "B14", "B15",
+    };
+
+    private String[] sweetBox = new String[]{
+            "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10", "A11",
+            "A12", "A13", "A14", "A16", "A17", "A18", "A19", "A20", "A21", "A22"
+    };
+    private JPanel panel = new JPanel(new GridLayout(9, 12));
+    private JPanel panelRegularLeft = new JPanel(new GridLayout(9,2));
+    private JPanel panelRegularRight = new JPanel(new GridLayout(9,2));
+    private JPanel panelSweetBox = new JPanel(new GridLayout(1, 22));
+
+
+    private JButton nextButton = new JButton("Next");
+
+    public Seat(){
+        for (String l: regular) {
+            JButton btn = new JButton(l);
+            btn.addActionListener(this);
+            btn.setBackground(Color.lightGray);
+            panel.add(btn);
+        }
+        for (String rl: regularLeft){
+            JButton btnRegularLeft = new JButton(rl);
+            btnRegularLeft.addActionListener(this);
+            btnRegularLeft.setBackground(Color.lightGray);
+            panelRegularLeft.add(btnRegularLeft);
+
+        }
+        for (String rr: regularRight){
+            JButton btnRegularRight = new JButton(rr);
+            btnRegularRight.addActionListener(this);
+            btnRegularRight.setBackground(Color.lightGray);
+            panelRegularRight.add(btnRegularRight);
+        }
+        for (String s: sweetBox){
+            JButton btnSweetBox = new JButton(s);
+            btnSweetBox.addActionListener(this);
+            btnSweetBox.setBackground(Color.lightGray);
+            panelSweetBox.add(btnSweetBox);
+        }
+        setTitle("Seat");
+        setSize(1650, 1080);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+        setLayoutManager();
+        setLocationAndSize();
+        addComponentsToContainer();
+        addActionEvent();
+        setVisible(true);
+    }
+
+    public void setLayoutManager(){
+        container.setLayout(null);
+    }
+
+    public void setLocationAndSize(){
+        labelRegular.setBounds(725,50,200,30);
+        labelSweetBox.setBounds(725,600,200,30);
+        panel.setBounds(418,100,700,480);
+        panelRegularLeft.setBounds(238,100,120, 480);
+        panelRegularRight.setBounds(1178,100,120,480);
+        panelSweetBox.setBounds(107,650,1320,40);
+        nextButton.setBounds(108,750,100,30);
+    }
+
+    public void addComponentsToContainer(){
+        container.add(labelRegular);
+        container.add(labelSweetBox);
+        container.add(nextButton);
+        container.add(panel);
+        container.add(panelRegularLeft);
+        container.add(panelRegularRight);
+        container.add(panelSweetBox);
+    }
+
+    public void addActionEvent(){
+        nextButton.addActionListener(this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton button = (JButton)e.getSource();
+        String buttonText = button.getText();
+        Color originalColor = button.getBackground();
+
+        if(buttonText.equals("Next")){
+            // Implement the action for the "Next" button
+        }
+        else if(button.getBackground() != Color.RED){
+            // Check which type of seat was selected and handle accordingly
+            if(Arrays.asList(regularLeft).contains(buttonText) || Arrays.asList(regular).contains(buttonText)|| Arrays.asList(regularRight).contains(buttonText)){
+                if(button.getBackground() == Color.GREEN){
+                    int choice = JOptionPane.showConfirmDialog(this, "Do you want to cancel this seat?");
+                    if(choice == JOptionPane.YES_OPTION){
+                        button.setBackground(Color.LIGHT_GRAY);
+                    }
+                }
+                else{
+                    int choice = JOptionPane.showConfirmDialog(this, "Do you want to select this seat?");
+                    if(choice == JOptionPane.YES_OPTION){
+                        button.setBackground(Color.GREEN);
+
+                    }
+                }
+            }
+            else if(Arrays.asList(sweetBox).contains(buttonText)){
+                if(button.getBackground() == Color.GREEN){
+                    int choice = JOptionPane.showConfirmDialog(this, "Do you want to cancel this seat?");
+                    if(choice == JOptionPane.YES_OPTION){
+                        button.setBackground(Color.LIGHT_GRAY);
+                    }
+                }
+                else{
+                    int choice = JOptionPane.showConfirmDialog(this, "Do you want to select this sweetbox?");
+                    if(choice == JOptionPane.YES_OPTION){
+                        button.setBackground(Color.GREEN);
+                        // Select all the seats in the sweetbox and mark them as reserved
+                        for(String s : sweetBox){
+                            Component[] components = panel.getComponents();
+                            for(Component component : components){
+                                if(component instanceof JButton){
+                                    JButton btn = (JButton)component;
+                                    if(btn.getText().equals(s)){
+                                        btn.setBackground(Color.GREEN);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 public class seatFrame {
+    public static void main(String[] args) {
+        new Seat();
+    }
 }
