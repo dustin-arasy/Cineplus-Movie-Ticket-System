@@ -44,14 +44,14 @@ class Login extends JFrame implements ActionListener {
         container.setLayout(null);
     }
     public void setTextComponent(){
-        userLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        passwordLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        showPassword.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        titlelabel1.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        titleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-        loginButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        resetButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        regisButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        userLabel.setFont(new Font("Space Grotesk", Font.BOLD, 14));
+        passwordLabel.setFont(new Font("Space Grotesk", Font.BOLD, 14));
+        showPassword.setFont(new Font("Space Grotesk", Font.BOLD, 14));
+        titlelabel1.setFont(new Font("Space Grotesk", Font.BOLD, 20));
+        titleLabel.setFont(new Font("Space Grotesk", Font.PLAIN, 14));
+        loginButton.setFont(new Font("Space Grotesk", Font.BOLD, 14));
+        resetButton.setFont(new Font("Space Grotesk", Font.BOLD, 14));
+        regisButton.setFont(new Font("Space Grotesk", Font.BOLD, 14));
     }
     public void setAllButton(){
         showPassword.setOpaque(false);
@@ -70,6 +70,7 @@ class Login extends JFrame implements ActionListener {
         backButton.setContentAreaFilled(false);
         backButton.setBorderPainted(false);
         backButton.setFocusable(false);
+        userLabel.setBackground(Color.black);
         userTextField.setBorder(null);
         passwordField.setBorder(null);
         loginButton.setBackground(Color.white);
@@ -85,7 +86,7 @@ class Login extends JFrame implements ActionListener {
     }
 
     public void setLocationAndSize() {
-        titlelabel1.setBounds(160, 50, 500, 30);
+        titlelabel1.setBounds(170, 50, 500, 30);
         titleLabel.setBounds(140, 80, 400, 30);
         userLabel.setBounds(120, 170, 100, 30);
         passwordLabel.setBounds(120, 240, 100, 30);
@@ -166,19 +167,19 @@ class Login extends JFrame implements ActionListener {
 }
 
 public class LoginFrame {
-    public static void main(String[] a) {
-        Database datas = new Database();
-        new LoginFrame(datas.getUsers());
-    }
     public LoginFrame(ArrayList<User> users){
         Login frame = new Login(users);
-        frame.setTitle("Login Form");
+        frame.setTitle("CINEPLUS+");
         frame.setVisible(true);
         frame.setBounds(10, 10, 1000, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
-        users.add(new User("dustinkun", "1234", "Dustin"));
     }
+    public static void main(String[] a) {
+        Database datas = new Database();
+        new LoginFrame(datas.getUsers());
+    }
+
 
 }
