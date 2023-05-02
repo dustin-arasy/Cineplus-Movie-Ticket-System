@@ -79,7 +79,7 @@ public class transactionFrame {
         Transaction frame = new Transaction(users);
         frame.setTitle("CINEPLUS+");
         frame.setVisible(true);
-        frame.setBounds(10, 10, 1000, 500);
+        frame.setBounds(10, 10, 1650, 1080);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);

@@ -30,7 +30,7 @@ class Homepage extends JFrame implements ActionListener {
         loginButton.setContentAreaFilled(false);
     }
     public void setBgphoto(){
-        bgphoto.setBounds(-7, -12, 960, 515);
+        bgphoto.setBounds(-57, 0, 1650, 1080);
         ImageIcon images = new ImageIcon("src/Images/homepagebg.png");
         JLabel label = new JLabel(images);
         bgphoto.add(label);
@@ -46,8 +46,8 @@ class Homepage extends JFrame implements ActionListener {
     }
 
     public void setLocationandSize(){
-        registButton.setBounds(375, 200, 200, 30);
-        loginButton.setBounds(375, 325, 200, 30);
+        registButton.setBounds(610, 255, 310, 80);
+        loginButton.setBounds(610, 455, 310, 80);
     }
 
     public void addActionEvent(){
@@ -74,10 +74,12 @@ public class HomepageFrame {
     public HomepageFrame(ArrayList<User> users){
         Homepage frame = new Homepage(users);
         frame.setTitle("CINEPLUS+");
-        frame.setSize(960, 540);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        frame.setSize(1650, 1080);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
         frame.setLocationRelativeTo(null);
+        frame.setLocation(-6, 0);
     }
     public static void main(String[] args) {
         Database datas = new Database();

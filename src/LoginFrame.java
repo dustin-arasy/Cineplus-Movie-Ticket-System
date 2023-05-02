@@ -33,8 +33,8 @@ class Login extends JFrame implements ActionListener {
     }
 
     public void setBgphoto(){
-        bgphoto.setBounds(0, -15, 1000, 500);
-        ImageIcon images = new ImageIcon("src/Images/bglogin.png");
+        bgphoto.setBounds(-60, -60, 1650, 1080);
+        ImageIcon images = new ImageIcon("src/Images/loginbg.png");
         JLabel label = new JLabel(images);
         bgphoto.add(label);
     }
@@ -44,14 +44,16 @@ class Login extends JFrame implements ActionListener {
         container.setLayout(null);
     }
     public void setTextComponent(){
-        userLabel.setFont(new Font("Space Grotesk", Font.BOLD, 14));
-        passwordLabel.setFont(new Font("Space Grotesk", Font.BOLD, 14));
-        showPassword.setFont(new Font("Space Grotesk", Font.BOLD, 14));
-        titlelabel1.setFont(new Font("Space Grotesk", Font.BOLD, 20));
-        titleLabel.setFont(new Font("Space Grotesk", Font.PLAIN, 14));
-        loginButton.setFont(new Font("Space Grotesk", Font.BOLD, 14));
-        resetButton.setFont(new Font("Space Grotesk", Font.BOLD, 14));
-        regisButton.setFont(new Font("Space Grotesk", Font.BOLD, 14));
+        userLabel.setFont(new Font("Space Grotesk", Font.BOLD, 22));
+        passwordLabel.setFont(new Font("Space Grotesk", Font.BOLD, 22));
+        showPassword.setFont(new Font("Space Grotesk", Font.BOLD, 22));
+        titlelabel1.setFont(new Font("Space Grotesk", Font.BOLD, 30));
+        titleLabel.setFont(new Font("Space Grotesk", Font.PLAIN, 22));
+        loginButton.setFont(new Font("Space Grotesk", Font.BOLD, 22));
+        resetButton.setFont(new Font("Space Grotesk", Font.BOLD, 22));
+        regisButton.setFont(new Font("Space Grotesk", Font.BOLD, 22));
+        userTextField.setFont(new Font("Space Grotesk", Font.BOLD, 22));
+        passwordField.setFont(new Font("Space Grotesk", Font.BOLD, 22));
     }
     public void setAllButton(){
         showPassword.setOpaque(false);
@@ -86,17 +88,17 @@ class Login extends JFrame implements ActionListener {
     }
 
     public void setLocationAndSize() {
-        titlelabel1.setBounds(170, 50, 500, 30);
-        titleLabel.setBounds(140, 80, 400, 30);
-        userLabel.setBounds(120, 170, 100, 30);
-        passwordLabel.setBounds(120, 240, 100, 30);
-        userTextField.setBounds(220, 170, 150, 30);
-        passwordField.setBounds(220, 240, 150, 30);
-        showPassword.setBounds(217, 270, 150, 30);
-        loginButton.setBounds(120, 320, 100, 30);
-        resetButton.setBounds(270, 320, 100, 30);
-        regisButton.setBounds(40, 370, 400, 30);
-        backButton.setBounds(10, 5, 50, 30);
+        titlelabel1.setBounds(180, 50, 500, 130);
+        titleLabel.setBounds(140, 160, 400, 30);
+        userLabel.setBounds(100, 270, 200, 50);
+        passwordLabel.setBounds(100, 400, 200, 50);
+        userTextField.setBounds(270, 270, 220, 50);
+        passwordField.setBounds(270, 400, 220, 50);
+        showPassword.setBounds(270, 450, 250, 50);
+        loginButton.setBounds(100, 530, 160, 50);
+        resetButton.setBounds(330, 530, 160, 50);
+        regisButton.setBounds(40, 590, 500, 50);
+        backButton.setBounds(47, 7, 85, 40);
     }
 
     public void addComponentsToContainer() {
@@ -171,10 +173,11 @@ public class LoginFrame {
         Login frame = new Login(users);
         frame.setTitle("CINEPLUS+");
         frame.setVisible(true);
-        frame.setBounds(10, 10, 1000, 500);
+        frame.setBounds(0, 0, 1650, 1000);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
+        frame.setLocation(-6, 0);
     }
     public static void main(String[] a) {
         Database datas = new Database();
