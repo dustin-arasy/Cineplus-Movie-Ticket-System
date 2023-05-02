@@ -74,6 +74,7 @@ class SessionTime extends JFrame implements ActionListener{
 
             // Add selected data to the list
             selectedData.add(selected);
+            System.out.println(date);
 
             // Show message to the user
             JOptionPane.showMessageDialog(this, "Selected data: " + selected);
