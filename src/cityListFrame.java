@@ -12,7 +12,7 @@ class cityList extends JFrame implements ActionListener {
     private JLabel nameLabel = new JLabel("City");
     private JLabel mallLabel = new JLabel("Mall");
     String[] city = {"Bandung" ,"Bogor","Denpasar" ,"Jakarta" ,"Malang","Makassar",
-            "Medan" , "Padang", "Pontianak" ,"Semarang","Surabaya"};
+            "Medan" , "Padang" ,"Palembang", "Pontianak" ,"Semarang","Surabaya"};
     private JComboBox cityList = new JComboBox<>(city);
     private JComboBox bioskopList = new JComboBox();
     private JButton nextButton = new JButton("NEXT");
@@ -173,6 +173,14 @@ class cityList extends JFrame implements ActionListener {
                 bioskopList.addItem("Plaza Andalas");
                 bioskopList.addItem("Damar Plaza");
                 bioskopList.addItem("Lippo Padang");
+            }
+            if (typeText.equals("Palembang")) {
+                bioskopList.removeAllItems();
+                bioskopList.addItem("Palembang Icon Mall");
+                bioskopList.addItem("Social Market");
+                bioskopList.addItem("Opi Mall");
+                bioskopList.addItem("Palembang Square");
+                bioskopList.addItem("PTC");
             }
             if (typeText.equals("Pontianak")) {
                 bioskopList.removeAllItems();

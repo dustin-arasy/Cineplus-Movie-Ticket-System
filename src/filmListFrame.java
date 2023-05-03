@@ -104,7 +104,7 @@ class Film extends JFrame implements ActionListener{
 
     private void setBgFilm() {
         bgfilm1.setBounds(320, 100, 190, 273);
-        ImageIcon images = new ImageIcon("src/Images/film1.jpeg");
+        ImageIcon images = new ImageIcon("src/Images/film1.png");
         JLabel film1 = new JLabel(images);
         bgfilm1.add(film1);
 
