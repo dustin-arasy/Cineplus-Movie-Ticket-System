@@ -21,7 +21,7 @@ class Film extends JFrame implements ActionListener{
     private JLabel film7 = new JLabel("<html>SEWU DINO<br>135 MINUTES <br>HORROR<html");
     private JLabel film8 = new JLabel("<html>AQUAMAN<br>104 MINUTES <br>ACTION<html");
     private JButton nextButton = new JButton("NEXT");
-    private JButton resetButton = new JButton("BACK");
+    private JButton backButton = new JButton("BACK");
     private JPanel bgfilm1 = new JPanel();
     private JPanel bgfilm2 = new JPanel();
     private JPanel bgfilm3 = new JPanel();
@@ -33,10 +33,15 @@ class Film extends JFrame implements ActionListener{
     private JPanel bgphoto = new JPanel();
 
     private ArrayList<String> filmList = new ArrayList<String>();
+    private ArrayList<String> citylist;
+    private ArrayList<String> bioskopList;
     private ArrayList<User> users = new ArrayList<>();
 
-    Film (ArrayList<User> users){
+    Film (ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop){
+        this.users = users;
         this.filmList = filmList;
+        citylist = listCity;
+        bioskopList = listBioskop;
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
@@ -59,9 +64,9 @@ class Film extends JFrame implements ActionListener{
         nextButton.setBorderPainted(false);
         nextButton.setFocusable(false);
         nextButton.setContentAreaFilled(true);
-        resetButton.setContentAreaFilled(true);
-        resetButton.setFocusable(false);
-        resetButton.setBorderPainted(false);
+        backButton.setContentAreaFilled(true);
+        backButton.setFocusable(false);
+        backButton.setBorderPainted(false);
         titlelabel1.setForeground(Color.WHITE);
         film1.setForeground(Color.WHITE);
         film2.setForeground(Color.WHITE);
@@ -73,8 +78,8 @@ class Film extends JFrame implements ActionListener{
         film8.setForeground(Color.WHITE);
         nextButton.setBackground(Color.WHITE);
         nextButton.setForeground(Color.BLACK);
-        resetButton.setBackground(Color.WHITE);
-        resetButton.setForeground(Color.BLACK);
+        backButton.setBackground(Color.WHITE);
+        backButton.setForeground(Color.BLACK);
         nameLabel.setForeground(Color.WHITE);
         listFilm.setBorder(null);
     }
@@ -82,7 +87,7 @@ class Film extends JFrame implements ActionListener{
     private void setTextComponent() {
         nameLabel.setFont(new Font("Space Grotesk", Font.BOLD, 20));
         nextButton.setFont(new Font("Space Grotesk", Font.BOLD, 14));
-        resetButton.setFont(new Font("Space Grotesk", Font.BOLD, 14));
+        backButton.setFont(new Font("Space Grotesk", Font.BOLD, 14));
         titlelabel1.setFont(new Font("Space Grotesk", Font.BOLD, 20));
         listFilm.setFont(new Font("Space Grotesk", Font.BOLD, 20));
         film1.setFont(new Font("Space Grotesk", Font.BOLD, 15));
@@ -156,7 +161,7 @@ class Film extends JFrame implements ActionListener{
 
     private void addActionEvent() {
         nextButton.addActionListener(this);
-        resetButton.addActionListener(this);
+        backButton.addActionListener(this);
     }
 
     private void addComponentsToContainer() {
@@ -172,7 +177,7 @@ class Film extends JFrame implements ActionListener{
         container.add(nameLabel);
         container.add(listFilm);
         container.add(nextButton);
-        container.add(resetButton);
+        container.add(backButton);
         container.add(bgfilm1);
         container.add(bgfilm2);
         container.add(bgfilm3);
@@ -197,7 +202,7 @@ class Film extends JFrame implements ActionListener{
         film8.setBounds(1220,750,180,80);
         listFilm.setBounds(50, 160, 200, 50);
         nextButton.setBounds(50, 600, 200, 50);
-        resetButton.setBounds(50, 700, 200, 50);
+        backButton.setBounds(50, 700, 200, 50);
     }
 
     private void setLayoutManager() {
@@ -209,19 +214,16 @@ class Film extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == nextButton){
-            JOptionPane.showMessageDialog(this,"Succesfully!");
-            System.out.println(filmList);
+            String selectedFilm = listFilm.getSelectedItem().toString();
+            filmList.add(selectedFilm);
+            JOptionPane.showMessageDialog(this,"Film Selected : " + selectedFilm);
+            new transactionFrame(users, citylist, bioskopList, filmList);
+            dispose();
         }
-        if (e.getSource() == resetButton) {
+        if (e.getSource() == backButton) {
             new cityListFrame(users);
             dispose();
         }
-        String selectedFilm = listFilm.getSelectedItem().toString();
-
-        System.out.println("Film Selected " + selectedFilm);
-        filmList.add(selectedFilm);
-        System.out.println(filmList);
-
     }
 }
 
@@ -229,13 +231,8 @@ class Film extends JFrame implements ActionListener{
 
 public class filmListFrame {
 
-    public static void main(String[] args) {
-        Database datas = new Database();
-        new filmListFrame(datas.getFilmList() , datas.getUsers());
-    }
-
-    public filmListFrame(ArrayList<filmListFrame> filmList , ArrayList<User> users) {
-        Film frame = new Film(users);
+    public filmListFrame(ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop) {
+        Film frame = new Film(users, listCity, listBioskop);
         frame.setTitle("CINEPLUS+");
         frame.setVisible(true);
         frame.setBounds(10, 10, 1650, 1080);

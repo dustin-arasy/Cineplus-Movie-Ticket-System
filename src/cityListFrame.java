@@ -16,14 +16,26 @@ class cityList extends JFrame implements ActionListener {
     private JComboBox cityList = new JComboBox<>(city);
     private JComboBox bioskopList = new JComboBox();
     private JButton nextButton = new JButton("NEXT");
-    private JButton resetButton = new JButton("BACK");
+    private JButton backButton = new JButton("BACK");
     private JPanel bgphoto = new JPanel();
+
+    public String getTemp() {
+        return temp;
+    }
+
+    private String temp = "Testing";
+    private String temp1;
 
     private ArrayList<String> listCity = new ArrayList<String>();
 
     private ArrayList<String> listBioskop = new ArrayList<String>();
-    private ArrayList<filmListFrame> filmList = new ArrayList<>();
     private ArrayList<User> users = new ArrayList<>();
+    public ArrayList<String> getListCity() {
+        return listCity;
+    }
+    public ArrayList<String> getListBioskop() {
+        return listBioskop;
+    }
 
     cityList(ArrayList<User> users) {
         this.users = users;
@@ -41,15 +53,15 @@ class cityList extends JFrame implements ActionListener {
         nextButton.setBorderPainted(false);
         nextButton.setFocusable(false);
         nextButton.setContentAreaFilled(true);
-        resetButton.setContentAreaFilled(true);
-        resetButton.setBorderPainted(false);
-        resetButton.setFocusable(false);
+        backButton.setContentAreaFilled(true);
+        backButton.setBorderPainted(false);
+        backButton.setFocusable(false);
         titlelabel1.setForeground(Color.white);
         titleLabel.setForeground(Color.white);
         nextButton.setBackground(Color.white);
         nextButton.setForeground(Color.black);
-        resetButton.setBackground(Color.white);
-        resetButton.setForeground(Color.black);
+        backButton.setBackground(Color.white);
+        backButton.setForeground(Color.black);
         nameLabel.setForeground(Color.white);
         mallLabel.setForeground(Color.white);
         cityList.setBorder(null);
@@ -60,7 +72,7 @@ class cityList extends JFrame implements ActionListener {
         nameLabel.setFont(new Font("Space Grotesk", Font.BOLD, 30));
         mallLabel.setFont(new Font("Space Grotesk", Font.BOLD, 30));
         nextButton.setFont(new Font("Space Grotesk", Font.BOLD, 14));
-        resetButton.setFont(new Font("Space Grotesk", Font.BOLD, 14));
+        backButton.setFont(new Font("Space Grotesk", Font.BOLD, 14));
         titlelabel1.setFont(new Font("Space Grotesk", Font.BOLD, 40));
         titleLabel.setFont(new Font("Space Grotesk", Font.PLAIN, 30));
         cityList.setFont(new Font("Space Grotesk", Font.PLAIN, 20));
@@ -77,7 +89,7 @@ class cityList extends JFrame implements ActionListener {
 
     private void addActionEvent() {
         nextButton.addActionListener(this);
-        resetButton.addActionListener(this);
+        backButton.addActionListener(this);
         cityList.addActionListener(this);
     }
 
@@ -89,7 +101,7 @@ class cityList extends JFrame implements ActionListener {
         container.add(cityList);
         container.add(bioskopList);
         container.add(nextButton);
-        container.add(resetButton);
+        container.add(backButton);
         container.add(bgphoto);
     }
 
@@ -101,7 +113,7 @@ class cityList extends JFrame implements ActionListener {
         cityList.setBounds(220, 220, 220, 40);
         bioskopList.setBounds(220,500,220,40);
         nextButton.setBounds(100, 700, 210, 40);
-        resetButton.setBounds(340, 700, 210, 40);
+        backButton.setBounds(340, 700, 210, 40);
     }
 
     private void setLayoutManager() {
@@ -112,14 +124,15 @@ class cityList extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == nextButton){
-            JOptionPane.showMessageDialog(this,"Succesfully!");
             listCity.add(cityList.getSelectedItem().toString());
-            new filmListFrame(filmList , users);
+            temp = cityList.getSelectedItem().toString();
+            temp1 = bioskopList.getSelectedItem().toString();
+            listBioskop.add(temp1);
+            JOptionPane.showMessageDialog(this,"City Selected : " + temp + "\n" + "Mall Selected : " + temp1);
+            new filmListFrame(users, listCity, listBioskop);
             dispose();
-            System.out.println(listCity);
-            System.out.println(listBioskop);
         }
-        if (e.getSource() == resetButton) {
+        if (e.getSource() == backButton) {
             new LoginFrame(users);
             dispose();
         }
@@ -205,21 +218,12 @@ class cityList extends JFrame implements ActionListener {
         }
 
         String selectedMall = bioskopList.getSelectedItem().toString();
-
-        System.out.println("Selected mall: " + selectedMall);
         listBioskop.add(selectedMall);
-        System.out.println(listBioskop);
     }
 
 
 }
 public class cityListFrame {
-
-
-    public static void main(String[] args) {
-        Database datas = new Database();
-        new cityListFrame(datas.getUsers());
-    }
 
     public cityListFrame(ArrayList<User> users) {
         cityList frame = new cityList(users);

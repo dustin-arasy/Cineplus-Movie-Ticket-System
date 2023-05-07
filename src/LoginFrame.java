@@ -134,7 +134,7 @@ class Login extends JFrame implements ActionListener {
             for (int i = 0; i < users.size(); i++) {
                 if (userText.equals(users.get(i).getUsername()) && pwdText.equals(users.get(i).getPassword())) {
                     JOptionPane.showMessageDialog(this, "Login Successful");
-                    new HomepageFrame(users);
+                    new cityListFrame(users);
                     dispose();
                     break;
                 } else if(!userText.equals(users.get(i).getUsername()) && !pwdText.equals(users.get(i).getPassword())) {
@@ -179,10 +179,10 @@ public class LoginFrame {
         frame.setLocationRelativeTo(null);
         frame.setLocation(-6, 0);
     }
-    public static void main(String[] a) {
-        Database datas = new Database();
-        new LoginFrame(datas.getUsers());
-    }
+//    public static void main(String[] a) {
+//        Database datas = new Database();
+//        new LoginFrame(datas.getUsers());
+//    }
 
 
 }

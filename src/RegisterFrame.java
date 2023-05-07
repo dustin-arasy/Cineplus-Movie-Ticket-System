@@ -51,6 +51,10 @@ class Register extends JFrame implements ActionListener {
         registerButton.setFont(new Font("Space Grotesk", Font.BOLD, 22));
         loginButton.setFont(new Font("Space Grotesk", Font.BOLD, 22));
         resetButton.setFont(new Font("Space Grotesk", Font.BOLD, 22));
+        nameTextField.setFont(new Font("Space Grotesk", Font.BOLD, 22));
+        userTextField.setFont(new Font("Space Grotesk", Font.BOLD, 22));
+        passwordField.setFont(new Font("Space Grotesk", Font.BOLD, 22));
+        conpasswordField.setFont(new Font("Space Grotesk", Font.BOLD, 22));
     }
     public void setAllButton(){
         showPassword.setOpaque(false);
@@ -176,11 +180,11 @@ class Register extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Password must be same!");
             } else {
                 JOptionPane.showMessageDialog(this, "Register Successful");
+                users.add(new User(userText, pwdText, nameText));
                 nameTextField.setText("");
                 userTextField.setText("");
                 passwordField.setText("");
                 conpasswordField.setText("");
-                users.add(new User(userText, pwdText, nameText));
                 new LoginFrame(users);
                 dispose();
             }
@@ -235,10 +239,10 @@ public class RegisterFrame {
         frame.setLocationRelativeTo(null);
         frame.setLocation(-6, 0);
     }
-    public static void main(String[] a) {
-        Database datas = new Database();
-        new RegisterFrame(datas.getUsers());
-    }
+//    public static void main(String[] a) {
+//        Database datas = new Database();
+//        new RegisterFrame(datas.getUsers());
+//    }
 
 
 

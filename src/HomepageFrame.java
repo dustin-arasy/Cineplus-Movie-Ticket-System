@@ -46,8 +46,8 @@ class Homepage extends JFrame implements ActionListener {
     }
 
     public void setLocationandSize(){
-        registButton.setBounds(610, 255, 310, 80);
-        loginButton.setBounds(610, 455, 310, 80);
+        registButton.setBounds(610, 315, 310, 80);
+        loginButton.setBounds(610, 515, 310, 80);
     }
 
     public void addActionEvent(){
