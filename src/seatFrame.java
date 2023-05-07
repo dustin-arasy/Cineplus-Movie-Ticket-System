@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 class Seat extends JFrame implements ActionListener{
@@ -54,35 +55,66 @@ class Seat extends JFrame implements ActionListener{
     private JPanel panelRegularLeft = new JPanel(new GridLayout(9,2));
     private JPanel panelRegularRight = new JPanel(new GridLayout(9,2));
     private JPanel panelSweetBox = new JPanel(new GridLayout(1, 22));
-
+    private JButton btnRegular[] = new JButton[regular.length];
+    private JButton btnRegularLeft[] = new JButton[regularLeft.length];
+    private JButton btnRegularRight[] = new JButton[regularRight.length];
+    private JButton btnSweetBox[] = new JButton[sweetBox.length];
 
     private JButton nextButton = new JButton("Next");
+//    private JButton backButton = new JButton("Back");
 
-    public Seat(){
+//    for(int i = 0; i < regular.length; i++){
+//
+//    }
+
+    private ArrayList<User> users = new ArrayList<>();
+//    private ArrayList<filmListFrame> filmList = new ArrayList<>();
+    private ArrayList<String> savedDate = new ArrayList<>();
+    private ArrayList<String> savedSession = new ArrayList<>();
+    private ArrayList<Integer> savedSeat = new ArrayList<>();
+    private ArrayList<String> selectedSeat = new ArrayList<String>();
+    private ArrayList<JButton> bookedSeat = new ArrayList<JButton>();
+    private ArrayList<String> citylist;
+    private ArrayList<String> bioskopList;
+    private ArrayList<String> filmList;
+
+    public Seat(ArrayList<String> filmList , ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop, ArrayList<String> savedDate, ArrayList<String> savedSession, ArrayList<Integer> savedSeat, ArrayList<JButton> bookedSeat){
+        users = users;
+        citylist = listCity;
+        bioskopList = listBioskop;
+        filmList = filmList;
+        savedDate = savedDate;
+        savedSession = savedSession;
+        savedSeat = savedSeat;
+        bookedSeat = bookedSeat;
+        int a = 0, b = 0, c = 0, d = 0;
         for (String l: regular) {
-            JButton btn = new JButton(l);
-            btn.addActionListener(this);
-            btn.setBackground(Color.lightGray);
-            panel.add(btn);
+            btnRegular[a] = new JButton(l);
+            btnRegular[a].addActionListener(this);
+            btnRegular[a].setBackground(Color.lightGray);
+            panel.add(btnRegular[a]);
+            a++;
         }
         for (String rl: regularLeft){
-            JButton btnRegularLeft = new JButton(rl);
-            btnRegularLeft.addActionListener(this);
-            btnRegularLeft.setBackground(Color.lightGray);
-            panelRegularLeft.add(btnRegularLeft);
-
+            btnRegularLeft[b] = new JButton(rl);
+            btnRegularLeft[b].addActionListener(this);
+            btnRegularLeft[b].setBackground(Color.lightGray);
+            panelRegularLeft.add(btnRegularLeft[b]);
+            b++;
         }
         for (String rr: regularRight){
-            JButton btnRegularRight = new JButton(rr);
-            btnRegularRight.addActionListener(this);
-            btnRegularRight.setBackground(Color.lightGray);
-            panelRegularRight.add(btnRegularRight);
+            btnRegularRight[c] = new JButton(rr);
+            btnRegularRight[c].addActionListener(this);
+            btnRegularRight[c].setBackground(Color.lightGray);
+            panelRegularRight.add(btnRegularRight[c]);
+            c++;
         }
         for (String s: sweetBox){
-            JButton btnSweetBox = new JButton(s);
-            btnSweetBox.addActionListener(this);
-            btnSweetBox.setBackground(Color.lightGray);
-            panelSweetBox.add(btnSweetBox);
+            btnSweetBox[d] = new JButton(s);
+            btnSweetBox[d].addActionListener(this);
+            btnSweetBox[d].setBackground(Color.lightGray);
+            panelSweetBox.add(btnSweetBox[d]);
+            d++;
         }
         setTitle("Seat");
         setSize(1650, 1080);
@@ -107,6 +139,7 @@ class Seat extends JFrame implements ActionListener{
         panelRegularRight.setBounds(1178,100,120,480);
         panelSweetBox.setBounds(107,650,1320,40);
         nextButton.setBounds(108,750,100,30);
+//        backButton.setBounds(1178, 750, 100, 30);
     }
 
     public void addComponentsToContainer(){
@@ -117,10 +150,12 @@ class Seat extends JFrame implements ActionListener{
         container.add(panelRegularLeft);
         container.add(panelRegularRight);
         container.add(panelSweetBox);
+//        container.add(backButton);
     }
 
     public void addActionEvent(){
         nextButton.addActionListener(this);
+//        backButton.addActionListener(this);
     }
 
     @Override
@@ -128,11 +163,42 @@ class Seat extends JFrame implements ActionListener{
         JButton button = (JButton)e.getSource();
         String buttonText = button.getText();
         Color originalColor = button.getBackground();
+        int jumlahSeat = 0;
 
         if(buttonText.equals("Next")){
+            for (int i = 0; i < btnRegular.length; i++) {
+                if (btnRegular[i].getBackground() == Color.GREEN) {
+                    btnRegular[i].setBackground(Color.RED);
+                    bookedSeat.add(btnRegular[i]);
+                }
+            }
+            for (int i = 0; i < btnRegularLeft.length; i++){
+                if (btnRegularLeft[i].getBackground() == Color.GREEN) {
+                    btnRegularLeft[i].setBackground(Color.RED);
+                    bookedSeat.add(btnRegularLeft[i]);
+                }
+            }
+            for (int i = 0; i < btnRegularRight.length; i++){
+                if (btnRegularRight[i].getBackground() == Color.GREEN) {
+                    btnRegularRight[i].setBackground(Color.RED);
+                    bookedSeat.add(btnRegularRight[i]);
+                }
+            }
+            for (int i = 0; i < btnSweetBox.length; i++){
+                if (btnSweetBox[i].getBackground() == Color.GREEN) {
+                    btnSweetBox[i].setBackground(Color.RED);
+                    bookedSeat.add(btnSweetBox[i]);
+                }
+            }
             // Implement the action for the "Next" button
-        }
-        else if(button.getBackground() != Color.RED){
+//            new sessionTimeFrame(filmList, users);
+//            dispose();
+//        } else if (buttonText.equals("Back")) {
+//            new SessionTime(filmList, users);
+//            dispose();
+            new transactionFrame(users, citylist, bioskopList, filmList, savedDate, savedSession, savedSeat, bookedSeat, selectedSeat);
+
+        } else if(button.getBackground() != Color.RED){
             // Check which type of seat was selected and handle accordingly
             if(Arrays.asList(regularLeft).contains(buttonText) || Arrays.asList(regular).contains(buttonText)|| Arrays.asList(regularRight).contains(buttonText)){
                 if(button.getBackground() == Color.GREEN){
@@ -145,7 +211,7 @@ class Seat extends JFrame implements ActionListener{
                     int choice = JOptionPane.showConfirmDialog(this, "Do you want to select this seat?");
                     if(choice == JOptionPane.YES_OPTION){
                         button.setBackground(Color.GREEN);
-
+                        selectedSeat.add(buttonText);
                     }
                 }
             }
@@ -168,6 +234,7 @@ class Seat extends JFrame implements ActionListener{
                                     JButton btn = (JButton)component;
                                     if(btn.getText().equals(s)){
                                         btn.setBackground(Color.GREEN);
+                                        selectedSeat.add(buttonText);
                                     }
                                 }
                             }
@@ -179,7 +246,8 @@ class Seat extends JFrame implements ActionListener{
     }
 }
 public class seatFrame {
-    public static void main(String[] args) {
-        new Seat();
-    }
+//    public static void main(String[] args) {
+//        Database datas = new Database();
+//        new Seat(datas.getFilmList(), datas.getUsers(), datas.getTimeSession(), datas.getBookedSeat());
+//    }
 }
