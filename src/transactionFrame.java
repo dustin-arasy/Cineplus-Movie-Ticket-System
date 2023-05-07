@@ -10,15 +10,25 @@ class Transaction extends JFrame implements ActionListener {
     private ArrayList<String> citylist;
     private ArrayList<String> bioskopList;
     private ArrayList<String> filmList;
+    private ArrayList<String> savedDate = new ArrayList<>();
+    private ArrayList<String> savedSession = new ArrayList<>();
+    private ArrayList<Integer> savedSeat = new ArrayList<>();
+    private ArrayList<String> selectedSeat = new ArrayList<String>();
+    private ArrayList<JButton> bookedSeat = new ArrayList<JButton>();
     private JButton exitButton = new JButton("⛔");
     private ArrayList<User> Users;
     Container container = getContentPane();
 
-    Transaction(ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop, ArrayList<String> listFilm){
+    Transaction(ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop, ArrayList<String> listFilm, ArrayList<String> savedDate, ArrayList<String> savedSession, ArrayList<Integer> savedSeat, ArrayList<JButton> bookedSeat, ArrayList<String> selectedSeat){
         Users = users;
         citylist = listCity;
         bioskopList = listBioskop;
         filmList = listFilm;
+        savedDate = savedDate;
+        savedSession = savedSession;
+        savedSeat = savedSeat;
+        selectedSeat = selectedSeat;
+        bookedSeat = bookedSeat;
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
@@ -31,11 +41,11 @@ class Transaction extends JFrame implements ActionListener {
     private JLabel cityTitle = new JLabel();
     private JLabel mallTitle = new JLabel();
     private JLabel filmTitle = new JLabel();
-    private JLabel sessionTitle = new JLabel("Session Time    : " + "Test");
-    private JLabel qtyTitle = new JLabel("Quantity         : " + "Test");
-    private JLabel seatTitle = new JLabel("Number Seat     : " + "Test");
+    private JLabel sessionTitle = new JLabel();
+    private JLabel qtyTitle = new JLabel();
+    private JLabel seatTitle = new JLabel();
     private JLabel priceTitle = new JLabel("Ticket Price   : " + "Test");
-    private JLabel totalPriceTitle = new JLabel("Total Price         : " + "Test");
+    private JLabel totalPriceTitle = new JLabel();
     private JLabel moneyDeposit = new JLabel("Money Deposit ");
     private JTextField depositMoneyTextfield = new JTextField();
     private JLabel userTitle = new JLabel( );
@@ -84,6 +94,11 @@ class Transaction extends JFrame implements ActionListener {
         cityTitle.setText("City                 : " + citylist.get(0));
         mallTitle.setText("Mall                    : " + bioskopList.get(1));
         filmTitle.setText("Film Name     : " + filmList.get(0));
+        sessionTitle.setText("Session Time    : " + savedSession.get(0));
+        qtyTitle.setText("Quantity         : " + savedSeat.get(0));
+//        seatTitle.setText("Number Seat     : " + bookedSeat);
+        int tempNum = savedSeat.get(0) * 40000;
+        totalPriceTitle.setText("Total Price         : " + tempNum);
         payButton.setFocusable(false);
         payButton.setContentAreaFilled(true);
         payButton.setBorderPainted(false);
@@ -172,9 +187,9 @@ class Transaction extends JFrame implements ActionListener {
 
 public class transactionFrame {
 
-    public transactionFrame(ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop, ArrayList<String> listFilm){
+    public transactionFrame(ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop, ArrayList<String> listFilm, ArrayList<String> savedDate, ArrayList<String> savedSession, ArrayList<Integer> savedSeat,ArrayList<JButton> bookedSeat,  ArrayList<String> selectedSeat){
 
-        Transaction frame = new Transaction(users, listCity, listBioskop, listFilm);
+        Transaction frame = new Transaction(users, listCity, listBioskop, listFilm, savedDate, savedSession, savedSeat, bookedSeat, selectedSeat);
         frame.setTitle("CINEPLUS+");
         frame.setVisible(true);
         frame.setBounds(10, 10, 1650, 1080);

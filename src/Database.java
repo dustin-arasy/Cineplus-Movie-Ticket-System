@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Database {
@@ -17,5 +18,16 @@ public class Database {
 
     private ArrayList<filmListFrame> filmList = new ArrayList<>();
 
+    public ArrayList<String> getTimeSession() {
+        return timeSession;
+    }
+
+    private ArrayList<String> timeSession = new ArrayList<>();
+
+    public ArrayList<JButton> getBookedSeat() {
+        return bookedSeat;
+    }
+
+    private ArrayList<JButton> bookedSeat = new ArrayList<>();
 
 }

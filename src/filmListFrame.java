@@ -226,7 +226,8 @@ class Film extends JFrame implements ActionListener{
             String selectedFilm = listFilm.getSelectedItem().toString();
             filmList.add(selectedFilm);
             JOptionPane.showMessageDialog(this,"Film Selected : " + selectedFilm, "FILM LIST", JOptionPane.INFORMATION_MESSAGE);
-            new transactionFrame(users, citylist, bioskopList, filmList);
+//            new transactionFrame(users, citylist, bioskopList, filmList);
+            new SessionTime(users, citylist, bioskopList, filmList);
             dispose();
         }
         if (e.getSource() == backButton) {
@@ -245,7 +246,7 @@ class Film extends JFrame implements ActionListener{
 
 
 
-public class filmListFrame {
+public class filmListFrame{
 
     public filmListFrame(ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop) {
         Film frame = new Film(users, listCity, listBioskop);
