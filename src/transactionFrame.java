@@ -10,7 +10,7 @@ class Transaction extends JFrame implements ActionListener {
     private ArrayList<String> citylist;
     private ArrayList<String> bioskopList;
     private ArrayList<String> filmList;
-
+    private JButton exitButton = new JButton("⛔");
     private ArrayList<User> Users;
     Container container = getContentPane();
 
@@ -68,6 +68,7 @@ class Transaction extends JFrame implements ActionListener {
         userTitle.setFont(new Font("Space Grotesk", Font.BOLD, 22));
         payButton.setFont(new Font("Space Grotesk", Font.BOLD, 22));
         nextButton.setFont(new Font("Space Grotesk", Font.BOLD, 22));
+        exitButton.setFont(new Font("Space Grotesk", Font.BOLD, 30));
         transactionTitle.setForeground(Color.white);
         cityTitle.setForeground(Color.white);
         mallTitle.setForeground(Color.white);
@@ -91,6 +92,10 @@ class Transaction extends JFrame implements ActionListener {
         nextButton.setBorderPainted(false);
         nextButton.setContentAreaFilled(true);
         nextButton.setBackground(Color.white);
+        exitButton.setBackground(Color.white);
+        exitButton.setBorderPainted(false);
+        exitButton.setContentAreaFilled(true);
+        exitButton.setFocusable(false);
     }
 
     public void setLocationAndSize(){
@@ -108,6 +113,7 @@ class Transaction extends JFrame implements ActionListener {
         userTitle.setBounds(570, 440, 450, 30);
         payButton.setBounds(90, 510, 100, 40);
         nextButton.setBounds(570, 510, 100, 40);
+        exitButton.setBounds(1450,10,65,65);
     }
 
     public void addComponentsToContainer(){
@@ -125,12 +131,14 @@ class Transaction extends JFrame implements ActionListener {
         container.add(userTitle);
         container.add(payButton);
         container.add(nextButton);
+        container.add(exitButton);
         container.add(bgphoto);
     }
 
     public void addActionEvent(){
         nextButton.addActionListener(this);
         payButton.addActionListener(this);
+        exitButton.addActionListener(this);
     }
 
     @Override
@@ -147,9 +155,16 @@ class Transaction extends JFrame implements ActionListener {
             int amountChange = amountMoney - 20000;
             String moneyAmountChange = Integer.toString(amountChange);
             if(amountChange < 0) {
-                JOptionPane.showMessageDialog(this, "Insufficient Amount Money Change!\n" + "Please Input Money Deposit excess of the Total Ticket Price!");
+                JOptionPane.showMessageDialog(this, "Insufficient Amount Money Change!\n" + "Please Input Money Deposit excess of the Total Ticket Price!", "TRANSACTION", JOptionPane.INFORMATION_MESSAGE);
             } else if (amountChange >= 0) {
-                JOptionPane.showMessageDialog(this, "The Total Money Change : " + moneyAmountChange);
+                JOptionPane.showMessageDialog(this, "The Total Money Change : " + moneyAmountChange, "TRANSACTION", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        if(e.getSource() == exitButton){
+            int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure want to Log Out?","LOG OUT", JOptionPane.YES_NO_OPTION);
+            if(dialogButton == JOptionPane.YES_OPTION){
+                new LoginFrame(Users);
+                dispose();
             }
         }
     }
@@ -166,6 +181,9 @@ public class transactionFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
+        frame.setLocation(-6, 0);
     }
 
 }

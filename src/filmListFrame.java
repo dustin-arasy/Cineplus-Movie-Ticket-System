@@ -31,6 +31,7 @@ class Film extends JFrame implements ActionListener{
     private JPanel bgfilm7 = new JPanel();
     private JPanel bgfilm8 = new JPanel();
     private JPanel bgphoto = new JPanel();
+    private JButton exitButton = new JButton("⛔");
 
     private ArrayList<String> filmList = new ArrayList<String>();
     private ArrayList<String> citylist;
@@ -82,6 +83,10 @@ class Film extends JFrame implements ActionListener{
         backButton.setForeground(Color.BLACK);
         nameLabel.setForeground(Color.WHITE);
         listFilm.setBorder(null);
+        exitButton.setBackground(Color.white);
+        exitButton.setBorderPainted(false);
+        exitButton.setContentAreaFilled(true);
+        exitButton.setFocusable(false);
     }
 
     private void setTextComponent() {
@@ -98,6 +103,7 @@ class Film extends JFrame implements ActionListener{
         film6.setFont(new Font("Space Grotesk", Font.BOLD, 15));
         film7.setFont(new Font("Space Grotesk", Font.BOLD, 15));
         film8.setFont(new Font("Space Grotesk", Font.BOLD, 15));
+        exitButton.setFont(new Font("Space Grotesk", Font.BOLD, 30));
     }
 
     private void setBgphoto() {
@@ -162,6 +168,7 @@ class Film extends JFrame implements ActionListener{
     private void addActionEvent() {
         nextButton.addActionListener(this);
         backButton.addActionListener(this);
+        exitButton.addActionListener(this);
     }
 
     private void addComponentsToContainer() {
@@ -186,6 +193,7 @@ class Film extends JFrame implements ActionListener{
         container.add(bgfilm6);
         container.add(bgfilm7);
         container.add(bgfilm8);
+        container.add(exitButton);
         container.add(bgphoto);
     }
 
@@ -203,6 +211,7 @@ class Film extends JFrame implements ActionListener{
         listFilm.setBounds(50, 160, 200, 50);
         nextButton.setBounds(50, 600, 200, 50);
         backButton.setBounds(50, 700, 200, 50);
+        exitButton.setBounds(1450,10,65,65);
     }
 
     private void setLayoutManager() {
@@ -216,13 +225,20 @@ class Film extends JFrame implements ActionListener{
         if (e.getSource() == nextButton){
             String selectedFilm = listFilm.getSelectedItem().toString();
             filmList.add(selectedFilm);
-            JOptionPane.showMessageDialog(this,"Film Selected : " + selectedFilm);
+            JOptionPane.showMessageDialog(this,"Film Selected : " + selectedFilm, "FILM LIST", JOptionPane.INFORMATION_MESSAGE);
             new transactionFrame(users, citylist, bioskopList, filmList);
             dispose();
         }
         if (e.getSource() == backButton) {
             new cityListFrame(users);
             dispose();
+        }
+        if(e.getSource() == exitButton){
+            int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure want to Log Out?","LOG OUT", JOptionPane.YES_NO_OPTION);
+            if(dialogButton == JOptionPane.YES_OPTION){
+                new LoginFrame(users);
+                dispose();
+            }
         }
     }
 }
@@ -239,6 +255,9 @@ public class filmListFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
+        frame.setLocation(-6, 0);
     }
 
 
