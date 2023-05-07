@@ -17,6 +17,7 @@ class cityList extends JFrame implements ActionListener {
     private JComboBox bioskopList = new JComboBox();
     private JButton nextButton = new JButton("NEXT");
     private JButton backButton = new JButton("BACK");
+    private JButton exitButton = new JButton("⛔");
     private JPanel bgphoto = new JPanel();
 
     public String getTemp() {
@@ -66,6 +67,10 @@ class cityList extends JFrame implements ActionListener {
         mallLabel.setForeground(Color.white);
         cityList.setBorder(null);
         bioskopList.setBorder(null);
+        exitButton.setBackground(Color.white);
+        exitButton.setBorderPainted(false);
+        exitButton.setContentAreaFilled(true);
+        exitButton.setFocusable(false);
     }
 
     private void setTextComponent() {
@@ -77,6 +82,7 @@ class cityList extends JFrame implements ActionListener {
         titleLabel.setFont(new Font("Space Grotesk", Font.PLAIN, 30));
         cityList.setFont(new Font("Space Grotesk", Font.PLAIN, 20));
         bioskopList.setFont(new Font("Space Grotesk", Font.PLAIN, 20));
+        exitButton.setFont(new Font("Space Grotesk", Font.BOLD, 30));
     }
 
     private void setBgphoto() {
@@ -91,6 +97,7 @@ class cityList extends JFrame implements ActionListener {
         nextButton.addActionListener(this);
         backButton.addActionListener(this);
         cityList.addActionListener(this);
+        exitButton.addActionListener(this);
     }
 
     private void addComponentsToContainer() {
@@ -102,6 +109,7 @@ class cityList extends JFrame implements ActionListener {
         container.add(bioskopList);
         container.add(nextButton);
         container.add(backButton);
+        container.add(exitButton);
         container.add(bgphoto);
     }
 
@@ -114,6 +122,7 @@ class cityList extends JFrame implements ActionListener {
         bioskopList.setBounds(220,500,220,40);
         nextButton.setBounds(100, 700, 210, 40);
         backButton.setBounds(340, 700, 210, 40);
+        exitButton.setBounds(1450,10,65,65);
     }
 
     private void setLayoutManager() {
@@ -128,7 +137,7 @@ class cityList extends JFrame implements ActionListener {
             temp = cityList.getSelectedItem().toString();
             temp1 = bioskopList.getSelectedItem().toString();
             listBioskop.add(temp1);
-            JOptionPane.showMessageDialog(this,"City Selected : " + temp + "\n" + "Mall Selected : " + temp1);
+            JOptionPane.showMessageDialog(this,"City Selected : " + temp + "\n" + "Mall Selected : " + temp1, "CITY LIST", JOptionPane.INFORMATION_MESSAGE);
             new filmListFrame(users, listCity, listBioskop);
             dispose();
         }
@@ -205,7 +214,7 @@ class cityList extends JFrame implements ActionListener {
                 bioskopList.removeAllItems();
                 bioskopList.addItem("Sentraland Mall");
                 bioskopList.addItem("Mall Ciputra");
-                bioskopList.addItem("Pragon City");
+                bioskopList.addItem("Paragon City");
             }
             if (typeText.equals("Surabaya")) {
                 bioskopList.removeAllItems();
@@ -214,17 +223,22 @@ class cityList extends JFrame implements ActionListener {
                 bioskopList.addItem("Delta Plaza");
                 bioskopList.addItem("Cikutra Mall");
             }
-
+            String selectedMall = bioskopList.getSelectedItem().toString();
+            listBioskop.add(selectedMall);
         }
 
-        String selectedMall = bioskopList.getSelectedItem().toString();
-        listBioskop.add(selectedMall);
+        if(e.getSource() == exitButton){
+            int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure want to Log Out?","LOG OUT", JOptionPane.YES_NO_OPTION);
+            if(dialogButton == JOptionPane.YES_OPTION){
+                new LoginFrame(users);
+                dispose();
+            }
+        }
     }
 
-
 }
-public class cityListFrame {
 
+public class cityListFrame {
     public cityListFrame(ArrayList<User> users) {
         cityList frame = new cityList(users);
         frame.setTitle("CINEPLUS+");
@@ -233,5 +247,8 @@ public class cityListFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
+        frame.setLocation(-6, 0);
     }
 }

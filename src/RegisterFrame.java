@@ -173,13 +173,23 @@ class Register extends JFrame implements ActionListener {
             userText = userTextField.getText();
             pwdText = passwordField.getText();
             pwdconText = conpasswordField.getText();
+            int number[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+            String numbers = number.toString();
 
             if (nameText.equals("") && userText.equals("") && pwdText.equals("") && pwdconText.equals("")) {
-                JOptionPane.showMessageDialog(this, "Name, Username, or Password must not be empty!");
-            } else if (!pwdText.equals(pwdconText)){
-                JOptionPane.showMessageDialog(this, "Password must be same!");
-            } else {
-                JOptionPane.showMessageDialog(this, "Register Successful");
+                JOptionPane.showMessageDialog(this, "Name, Username, or Password must not be empty!", "REGISTER ACCOUNT", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else if (!pwdText.equals(pwdconText)){
+                JOptionPane.showMessageDialog(this, "Password must be same!", "REGISTER ACCOUNT", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else if(nameText.equalsIgnoreCase(numbers)){
+                JOptionPane.showMessageDialog(this, "Name can't contain numbers!", "REGISTER ACCOUNT", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else if(nameText.isEmpty() || userText.isEmpty() || pwdText.isEmpty() || pwdconText.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Textfiled can't be empty!", "REGISTER ACCOUNT",  JOptionPane.INFORMATION_MESSAGE);
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Register Successful", "REGISTER ACCOUNT", JOptionPane.INFORMATION_MESSAGE);
                 users.add(new User(userText, pwdText, nameText));
                 nameTextField.setText("");
                 userTextField.setText("");
@@ -231,7 +241,6 @@ public class RegisterFrame {
         frame.setTitle("CINEPLUS+");
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
-//        frame.setUndecorated(true);
         frame.setVisible(true);
         frame.setBounds(0, 0, 1650, 1000);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -239,10 +248,6 @@ public class RegisterFrame {
         frame.setLocationRelativeTo(null);
         frame.setLocation(-6, 0);
     }
-//    public static void main(String[] a) {
-//        Database datas = new Database();
-//        new RegisterFrame(datas.getUsers());
-//    }
 
 
 
