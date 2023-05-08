@@ -112,9 +112,9 @@ class SessionTime extends JFrame implements ActionListener{
                 // Show message to the user
                 JOptionPane.showMessageDialog(this, "Selected data: " + selected);
                 // move to next screen
+                new Seat(filmList, Users, citylist, bioskopList, savedDate, savedSession, savedSeat, bookedSeat);
+                dispose();
             }
-            new Seat(filmList, Users, citylist, bioskopList, savedDate, savedSession, savedSeat, bookedSeat);
-            dispose();
         }
         if (e.getSource() == backButton) {
 //            new filmListFrame(filmList, users);
