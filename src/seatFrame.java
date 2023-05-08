@@ -8,8 +8,7 @@ import java.util.Arrays;
 
 class Seat extends JFrame implements ActionListener{
     Container container = getContentPane();
-    private JLabel labelRegular = new JLabel("Regular 30.000");
-    private JLabel labelSweetBox = new JLabel("Sweetbox 35.000");
+    private JPanel bgPhoto = new JPanel();
     private String[] regular = new String[] {
 
             "J3", "J4", "J5", "J6", "J7", "J8", "J9", "J10", "J11", "J12", "J13",
@@ -77,7 +76,7 @@ class Seat extends JFrame implements ActionListener{
     private ArrayList<String> citylist;
     private ArrayList<String> bioskopList;
     private ArrayList<String> filmList;
-
+    Integer seat = 0;
     public Seat(ArrayList<String> listFilm , ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop, ArrayList<String> savedDate, ArrayList<String> savedSession, ArrayList<Integer> savedSeat, ArrayList<JButton> bookedSeat){
         Users = users;
         citylist = listCity;
@@ -86,6 +85,7 @@ class Seat extends JFrame implements ActionListener{
         savedDates = savedDate;
         savedSessions = savedSession;
         savedSeats = savedSeat;
+//        seat = savedSeat;
         this.selectedSeat = selectedSeat;
         this.bookedSeat = bookedSeat;
         int a = 0, b = 0, c = 0, d = 0;
@@ -118,6 +118,7 @@ class Seat extends JFrame implements ActionListener{
             d++;
         }
         setTitle("Seat");
+        setBgPhoto();
         setSize(1650, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
@@ -133,24 +134,21 @@ class Seat extends JFrame implements ActionListener{
     }
 
     public void setLocationAndSize(){
-        labelRegular.setBounds(725,50,200,30);
-        labelSweetBox.setBounds(725,600,200,30);
-        panel.setBounds(418,100,700,480);
-        panelRegularLeft.setBounds(238,100,120, 480);
-        panelRegularRight.setBounds(1178,100,120,480);
-        panelSweetBox.setBounds(107,650,1320,40);
-        nextButton.setBounds(108,750,100,30);
+        panel.setBounds(418,180,700,485);
+        panelRegularLeft.setBounds(238,180,120, 485);
+        panelRegularRight.setBounds(1178,180,120,485);
+        panelSweetBox.setBounds(107,702,1320,40);
+        nextButton.setBounds(108,770,100,30);
 //        backButton.setBounds(1178, 750, 100, 30);
     }
 
     public void addComponentsToContainer(){
-        container.add(labelRegular);
-        container.add(labelSweetBox);
         container.add(nextButton);
         container.add(panel);
         container.add(panelRegularLeft);
         container.add(panelRegularRight);
         container.add(panelSweetBox);
+        container.add(bgPhoto);
 //        container.add(backButton);
     }
 
@@ -159,47 +157,56 @@ class Seat extends JFrame implements ActionListener{
 //        backButton.addActionListener(this);
     }
 
+    private void setBgPhoto(){
+        bgPhoto.setBounds(-50,0,1650,1080);
+        ImageIcon image = new ImageIcon("src/Images/seat.png");
+        JLabel imageLabel = new JLabel(image);
+        bgPhoto.add(imageLabel);
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton button = (JButton)e.getSource();
         String buttonText = button.getText();
         Color originalColor = button.getBackground();
-        int jumlahSeat = 0;
+        Integer jumlahSeatReg = 0, jumlahSeatSweet = 0;
+
 
         if(buttonText.equals("Next")){
-            for (int i = 0; i < btnRegular.length; i++) {
-                if (btnRegular[i].getBackground() == Color.GREEN) {
-                    btnRegular[i].setBackground(Color.RED);
-                    bookedSeat.add(btnRegular[i]);
+            Integer total = jumlahSeatReg + jumlahSeatSweet;
+//            if(total = seat) {
+                for (int i = 0; i < btnRegular.length; i++) {
+                    if (btnRegular[i].getBackground() == Color.GREEN) {
+                        btnRegular[i].setBackground(Color.RED);
+                        bookedSeat.add(btnRegular[i]);
+                    }
                 }
-            }
-            for (int i = 0; i < btnRegularLeft.length; i++){
-                if (btnRegularLeft[i].getBackground() == Color.GREEN) {
-                    btnRegularLeft[i].setBackground(Color.RED);
-                    bookedSeat.add(btnRegularLeft[i]);
+                for (int i = 0; i < btnRegularLeft.length; i++) {
+                    if (btnRegularLeft[i].getBackground() == Color.GREEN) {
+                        btnRegularLeft[i].setBackground(Color.RED);
+                        bookedSeat.add(btnRegularLeft[i]);
+                    }
                 }
-            }
-            for (int i = 0; i < btnRegularRight.length; i++){
-                if (btnRegularRight[i].getBackground() == Color.GREEN) {
-                    btnRegularRight[i].setBackground(Color.RED);
-                    bookedSeat.add(btnRegularRight[i]);
+                for (int i = 0; i < btnRegularRight.length; i++) {
+                    if (btnRegularRight[i].getBackground() == Color.GREEN) {
+                        btnRegularRight[i].setBackground(Color.RED);
+                        bookedSeat.add(btnRegularRight[i]);
+                    }
                 }
-            }
-            for (int i = 0; i < btnSweetBox.length; i++){
-                if (btnSweetBox[i].getBackground() == Color.GREEN) {
-                    btnSweetBox[i].setBackground(Color.RED);
-                    bookedSeat.add(btnSweetBox[i]);
+                for (int i = 0; i < btnSweetBox.length; i++) {
+                    if (btnSweetBox[i].getBackground() == Color.GREEN) {
+                        btnSweetBox[i].setBackground(Color.RED);
+                        bookedSeat.add(btnSweetBox[i]);
+                    }
                 }
-            }
-            // Implement the action for the "Next" button
-//            new sessionTimeFrame(filmList, users);
-//            dispose();
-//        } else if (buttonText.equals("Back")) {
-//            new SessionTime(filmList, users);
-//            dispose();
-            new transactionFrame(Users, citylist, bioskopList, filmList, savedDates, savedSessions, savedSeats, bookedSeat, selectedSeat);
-            dispose();
-
+                new transactionFrame(Users, citylist, bioskopList, filmList, savedDates, savedSessions, savedSeats, bookedSeat, selectedSeat);
+                dispose();
+//            } else if(total > seat){
+//                JOptionPane.showMessageDialog("Please select only" + seat + "seat");
+//            } else{
+//                JOptionPane.showMessageDialog("Please select" + (seat - total) + "more seat please!");
+//            }
         } else if(button.getBackground() != Color.RED){
             // Check which type of seat was selected and handle accordingly
             if(Arrays.asList(regularLeft).contains(buttonText) || Arrays.asList(regular).contains(buttonText)|| Arrays.asList(regularRight).contains(buttonText)){
@@ -207,6 +214,7 @@ class Seat extends JFrame implements ActionListener{
                     int choice = JOptionPane.showConfirmDialog(this, "Do you want to cancel this seat?");
                     if(choice == JOptionPane.YES_OPTION){
                         button.setBackground(Color.LIGHT_GRAY);
+                        jumlahSeatReg --;
                     }
                 }
                 else{
@@ -214,6 +222,7 @@ class Seat extends JFrame implements ActionListener{
                     if(choice == JOptionPane.YES_OPTION){
                         button.setBackground(Color.GREEN);
                         selectedSeat.add(buttonText);
+                        jumlahSeatReg++;
                     }
                 }
             }
@@ -222,6 +231,7 @@ class Seat extends JFrame implements ActionListener{
                     int choice = JOptionPane.showConfirmDialog(this, "Do you want to cancel this seat?");
                     if(choice == JOptionPane.YES_OPTION){
                         button.setBackground(Color.LIGHT_GRAY);
+                        jumlahSeatSweet--;
                     }
                 }
                 else{
@@ -237,6 +247,7 @@ class Seat extends JFrame implements ActionListener{
                                     if(btn.getText().equals(s)){
                                         btn.setBackground(Color.GREEN);
                                         selectedSeat.add(buttonText);
+                                        jumlahSeatSweet++;
                                     }
                                 }
                             }
