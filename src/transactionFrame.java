@@ -10,11 +10,11 @@ class Transaction extends JFrame implements ActionListener {
     private ArrayList<String> citylist;
     private ArrayList<String> bioskopList;
     private ArrayList<String> filmList;
-    private ArrayList<String> savedDate = new ArrayList<>();
-    private ArrayList<String> savedSession = new ArrayList<>();
-    private ArrayList<Integer> savedSeat = new ArrayList<>();
-    private ArrayList<String> selectedSeat = new ArrayList<String>();
-    private ArrayList<JButton> bookedSeat = new ArrayList<JButton>();
+    private ArrayList<String> savedDates;
+    private ArrayList<String> savedSessions;
+    private ArrayList<Integer> savedSeats;
+    private ArrayList<String> selectedSeats = new ArrayList<String>();
+    private ArrayList<JButton> bookedSeats = new ArrayList<JButton>();
     private JButton exitButton = new JButton("⛔");
     private ArrayList<User> Users;
     Container container = getContentPane();
@@ -24,11 +24,11 @@ class Transaction extends JFrame implements ActionListener {
         citylist = listCity;
         bioskopList = listBioskop;
         filmList = listFilm;
-        savedDate = savedDate;
-        savedSession = savedSession;
-        savedSeat = savedSeat;
-        selectedSeat = selectedSeat;
-        bookedSeat = bookedSeat;
+        savedDates = savedDate;
+        savedSessions = savedSession;
+        savedSeats = savedSeat;
+        selectedSeats = selectedSeat;
+        bookedSeats = bookedSeat;
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
@@ -44,7 +44,7 @@ class Transaction extends JFrame implements ActionListener {
     private JLabel sessionTitle = new JLabel();
     private JLabel qtyTitle = new JLabel();
     private JLabel seatTitle = new JLabel();
-    private JLabel priceTitle = new JLabel("Ticket Price   : " + "Test");
+    private JLabel priceTitle = new JLabel("Ticket Price   : " + "30000");
     private JLabel totalPriceTitle = new JLabel();
     private JLabel moneyDeposit = new JLabel("Money Deposit ");
     private JTextField depositMoneyTextfield = new JTextField();
@@ -92,12 +92,13 @@ class Transaction extends JFrame implements ActionListener {
         userTitle.setForeground(Color.white);
         userTitle.setText("Operated By      : " + Users.get(0).getName());
         cityTitle.setText("City                 : " + citylist.get(0));
-        mallTitle.setText("Mall                    : " + bioskopList.get(1));
+        mallTitle.setText("Mall                    : " + bioskopList.get(0));
         filmTitle.setText("Film Name     : " + filmList.get(0));
-        sessionTitle.setText("Session Time    : " + savedSession.get(0));
-        qtyTitle.setText("Quantity         : " + savedSeat.get(0));
-//        seatTitle.setText("Number Seat     : " + bookedSeat);
-        int tempNum = savedSeat.get(0) * 40000;
+        sessionTitle.setText("Session Time    : " + savedSessions.get(0));
+        qtyTitle.setText("Quantity         : " + savedSeats.get(0));
+        String tempSeat = bookedSeats.toString();
+        seatTitle.setText("Number Seat     : " + tempSeat);
+        int tempNum = savedSeats.get(0) * 30000;
         totalPriceTitle.setText("Total Price         : " + tempNum);
         payButton.setFocusable(false);
         payButton.setContentAreaFilled(true);
@@ -167,7 +168,8 @@ class Transaction extends JFrame implements ActionListener {
         if(e.getSource() == payButton){
             String moneyDeposit = depositMoneyTextfield.getText();
             int amountMoney = Integer.parseInt(moneyDeposit);
-            int amountChange = amountMoney - 20000;
+            int tempNum = savedSeats.get(0) * 30000;
+            int amountChange = amountMoney - tempNum;
             String moneyAmountChange = Integer.toString(amountChange);
             if(amountChange < 0) {
                 JOptionPane.showMessageDialog(this, "Insufficient Amount Money Change!\n" + "Please Input Money Deposit excess of the Total Ticket Price!", "TRANSACTION", JOptionPane.INFORMATION_MESSAGE);

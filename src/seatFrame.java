@@ -67,26 +67,27 @@ class Seat extends JFrame implements ActionListener{
 //
 //    }
 
-    private ArrayList<User> users = new ArrayList<>();
+    private ArrayList<User> Users;
 //    private ArrayList<filmListFrame> filmList = new ArrayList<>();
-    private ArrayList<String> savedDate = new ArrayList<>();
-    private ArrayList<String> savedSession = new ArrayList<>();
-    private ArrayList<Integer> savedSeat = new ArrayList<>();
+    private ArrayList<String> savedDates;
+    private ArrayList<String> savedSessions;
+    private ArrayList<Integer> savedSeats;
     private ArrayList<String> selectedSeat = new ArrayList<String>();
     private ArrayList<JButton> bookedSeat = new ArrayList<JButton>();
     private ArrayList<String> citylist;
     private ArrayList<String> bioskopList;
     private ArrayList<String> filmList;
 
-    public Seat(ArrayList<String> filmList , ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop, ArrayList<String> savedDate, ArrayList<String> savedSession, ArrayList<Integer> savedSeat, ArrayList<JButton> bookedSeat){
-        users = users;
+    public Seat(ArrayList<String> listFilm , ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop, ArrayList<String> savedDate, ArrayList<String> savedSession, ArrayList<Integer> savedSeat, ArrayList<JButton> bookedSeat){
+        Users = users;
         citylist = listCity;
         bioskopList = listBioskop;
-        filmList = filmList;
-        savedDate = savedDate;
-        savedSession = savedSession;
-        savedSeat = savedSeat;
-        bookedSeat = bookedSeat;
+        filmList = listFilm;
+        savedDates = savedDate;
+        savedSessions = savedSession;
+        savedSeats = savedSeat;
+        this.selectedSeat = selectedSeat;
+        this.bookedSeat = bookedSeat;
         int a = 0, b = 0, c = 0, d = 0;
         for (String l: regular) {
             btnRegular[a] = new JButton(l);
@@ -196,7 +197,9 @@ class Seat extends JFrame implements ActionListener{
 //        } else if (buttonText.equals("Back")) {
 //            new SessionTime(filmList, users);
 //            dispose();
-            new transactionFrame(users, citylist, bioskopList, filmList, savedDate, savedSession, savedSeat, bookedSeat, selectedSeat);
+            new transactionFrame(Users, citylist, bioskopList, filmList, savedDates, savedSessions, savedSeats, bookedSeat, selectedSeat);
+            dispose();
+            System.out.println(savedSessions.get(0));
 
         } else if(button.getBackground() != Color.RED){
             // Check which type of seat was selected and handle accordingly
