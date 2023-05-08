@@ -18,12 +18,12 @@ class SessionTime extends JFrame implements ActionListener{
     private JButton decrementButton = new JButton("-");
     private JButton nextButton = new JButton("Next");
     private JButton backButton = new JButton("Back");
-    private ArrayList<User> users = new ArrayList<>();
+    private ArrayList<User> Users;
 //    private ArrayList<filmListFrame> filmList = new ArrayList<>();
-    private ArrayList<String> savedDate = new ArrayList<>();
-    private ArrayList<String> savedSession = new ArrayList<>();
-    private ArrayList<Integer> savedSeat = new ArrayList<>();
-    private ArrayList<JButton> bookedSeat = new ArrayList<>();
+    private ArrayList<String> savedDate = new ArrayList<String>();
+    private ArrayList<String> savedSession = new ArrayList<String>();
+    private ArrayList<Integer> savedSeat = new ArrayList<Integer>();
+    private ArrayList<JButton> bookedSeat = new ArrayList<JButton>();
     private ArrayList<String> citylist;
     private ArrayList<String> bioskopList;
     private ArrayList<String> filmList;
@@ -32,7 +32,10 @@ class SessionTime extends JFrame implements ActionListener{
 
 
     public SessionTime(ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop, ArrayList<String> listFilm){
-        users = users;
+        this.savedDate = savedDate;
+        this.savedSession = savedSession;
+        this.savedSeat = savedSeat;
+        Users = users;
         citylist = listCity;
         bioskopList = listBioskop;
         filmList = listFilm;
@@ -102,7 +105,6 @@ class SessionTime extends JFrame implements ActionListener{
             savedDate.add(date);
             savedSession.add(selectedSession);
             savedSeat.add(totalSeats);
-            System.out.println(date);
 
             if(totalSeats == 0){
                 JOptionPane.showMessageDialog(this, "Please select total seat!");
@@ -110,13 +112,16 @@ class SessionTime extends JFrame implements ActionListener{
                 // Show message to the user
                 JOptionPane.showMessageDialog(this, "Selected data: " + selected);
                 // move to next screen
-                new Seat(filmList, users, savedDate, citylist, bioskopList, savedSession, savedSeat, bookedSeat);
-                dispose();
             }
-        } else if (e.getSource() == backButton) {
+            new Seat(filmList, Users, citylist, bioskopList, savedDate, savedSession, savedSeat, bookedSeat);
+            dispose();
+            System.out.println(savedSession.get(0));
+        }
+        if (e.getSource() == backButton) {
 //            new filmListFrame(filmList, users);
             dispose();
-        } else if (e.getSource() == incrementButton) {
+        }
+        if (e.getSource() == incrementButton) {
                 totalSeats++;
         } else if (e.getSource() == decrementButton) {
                 totalSeats--;
