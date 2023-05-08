@@ -138,7 +138,7 @@ class Seat extends JFrame implements ActionListener{
         panelRegularLeft.setBounds(238,180,120, 485);
         panelRegularRight.setBounds(1178,180,120,485);
         panelSweetBox.setBounds(107,702,1320,40);
-        nextButton.setBounds(108,770,100,30);
+        nextButton.setBounds(752,770,100,30);
 //        backButton.setBounds(1178, 750, 100, 30);
     }
 
@@ -158,7 +158,7 @@ class Seat extends JFrame implements ActionListener{
     }
 
     private void setBgPhoto(){
-        bgPhoto.setBounds(-50,0,1650,1080);
+        bgPhoto.setBounds(-52,0,1650,1080);
         ImageIcon image = new ImageIcon("src/Images/seat.png");
         JLabel imageLabel = new JLabel(image);
         bgPhoto.add(imageLabel);
