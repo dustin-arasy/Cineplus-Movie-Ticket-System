@@ -199,7 +199,6 @@ class Seat extends JFrame implements ActionListener{
 //            dispose();
             new transactionFrame(Users, citylist, bioskopList, filmList, savedDates, savedSessions, savedSeats, bookedSeat, selectedSeat);
             dispose();
-            System.out.println(savedSessions.get(0));
 
         } else if(button.getBackground() != Color.RED){
             // Check which type of seat was selected and handle accordingly

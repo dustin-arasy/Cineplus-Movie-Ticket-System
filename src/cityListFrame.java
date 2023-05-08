@@ -142,8 +142,11 @@ class cityList extends JFrame implements ActionListener {
             dispose();
         }
         if (e.getSource() == backButton) {
-            new LoginFrame(users);
-            dispose();
+            int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure want to Log Out?","LOG OUT", JOptionPane.YES_NO_OPTION);
+            if(dialogButton == JOptionPane.YES_OPTION){
+                new LoginFrame(users);
+                dispose();
+            }
         }
         if (e.getSource() == cityList) {
             String typeText = ((JTextField)cityList.getEditor().getEditorComponent()).getText();
