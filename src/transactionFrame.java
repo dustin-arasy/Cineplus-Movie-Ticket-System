@@ -18,6 +18,7 @@ class Transaction extends JFrame implements ActionListener {
     private JButton exitButton = new JButton("⛔");
     private ArrayList<User> Users;
     Container container = getContentPane();
+    int check = 0;
 
     Transaction(ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop, ArrayList<String> listFilm, ArrayList<String> savedDate, ArrayList<String> savedSession, ArrayList<Integer> savedSeat, ArrayList<JButton> bookedSeat, ArrayList<String> selectedSeat){
         Users = users;
@@ -92,11 +93,11 @@ class Transaction extends JFrame implements ActionListener {
         userTitle.setForeground(Color.white);
         userTitle.setText("Operated By      : " + Users.get(0).getName());
         cityTitle.setText("City                 : " + citylist.get(0));
-        mallTitle.setText("Mall                    : " + bioskopList.get(0));
+        mallTitle.setText("Mall                    : " + bioskopList.get(1));
         filmTitle.setText("Film Name     : " + filmList.get(0));
         sessionTitle.setText("Session Time    : " + savedSessions.get(0));
         qtyTitle.setText("Quantity         : " + savedSeats.get(0));
-        String tempSeat = bookedSeats.toString();
+        String tempSeat = selectedSeats.toString();
         seatTitle.setText("Number Seat     : " + tempSeat);
         int tempNum = savedSeats.get(0) * 30000;
         totalPriceTitle.setText("Total Price         : " + tempNum);
@@ -160,9 +161,13 @@ class Transaction extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == nextButton){
-            JOptionPane.showMessageDialog(this, "Transaction Successfully");
+            if(check == 0){
+                JOptionPane.showMessageDialog(this, "Please pay the ticket first!", "TRANSACTION", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+            JOptionPane.showMessageDialog(this, "Transaction Successfully!", "TRANSACTION", JOptionPane.INFORMATION_MESSAGE);
             new cityListFrame(Users);
             dispose();
+            }
         }
 
         if(e.getSource() == payButton){
@@ -175,6 +180,7 @@ class Transaction extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Insufficient Amount Money Change!\n" + "Please Input Money Deposit excess of the Total Ticket Price!", "TRANSACTION", JOptionPane.INFORMATION_MESSAGE);
             } else if (amountChange >= 0) {
                 JOptionPane.showMessageDialog(this, "The Total Money Change : " + moneyAmountChange, "TRANSACTION", JOptionPane.INFORMATION_MESSAGE);
+                check = 1;
             }
         }
         if(e.getSource() == exitButton){

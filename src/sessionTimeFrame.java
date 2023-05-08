@@ -115,7 +115,6 @@ class SessionTime extends JFrame implements ActionListener{
             }
             new Seat(filmList, Users, citylist, bioskopList, savedDate, savedSession, savedSeat, bookedSeat);
             dispose();
-            System.out.println(savedSession.get(0));
         }
         if (e.getSource() == backButton) {
 //            new filmListFrame(filmList, users);

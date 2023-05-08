@@ -133,12 +133,14 @@ class Login extends JFrame implements ActionListener {
             pwdText = passwordField.getText();
             for (int i = 0; i < users.size(); i++) {
                 if (userText.equals(users.get(i).getUsername()) && pwdText.equals(users.get(i).getPassword())) {
-                    JOptionPane.showMessageDialog(this, "Login Successful","LOGIN ACCOUNT", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Login Successful!","LOGIN ACCOUNT", JOptionPane.INFORMATION_MESSAGE);
                     new cityListFrame(users);
                     dispose();
                     break;
                 } else if(!userText.equals(users.get(i).getUsername()) || !pwdText.equals(users.get(i).getPassword())) {
-                    JOptionPane.showMessageDialog(this, "Invalid Username or Password","LOGIN ACCOUNT", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Invalid Username or Password!","LOGIN ACCOUNT", JOptionPane.INFORMATION_MESSAGE);
+                } else if (userText.isEmpty() || pwdText.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Username or Password can't be empty!", "LOGIN ACCOUNT", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
 

@@ -187,9 +187,10 @@ class Register extends JFrame implements ActionListener {
             }
             else if(nameText.isEmpty() || userText.isEmpty() || pwdText.isEmpty() || pwdconText.isEmpty()){
                 JOptionPane.showMessageDialog(this, "Textfiled can't be empty!", "REGISTER ACCOUNT",  JOptionPane.INFORMATION_MESSAGE);
-            }
-            else {
-                JOptionPane.showMessageDialog(this, "Register Successful", "REGISTER ACCOUNT", JOptionPane.INFORMATION_MESSAGE);
+            } else if (pwdText.length() < 7 && pwdconText.length() < 7) {
+                JOptionPane.showMessageDialog(this, "Password must be 7 characters or more!", "REGISTER ACCOUNT", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Register Successful!", "REGISTER ACCOUNT", JOptionPane.INFORMATION_MESSAGE);
                 users.add(new User(userText, pwdText, nameText));
                 nameTextField.setText("");
                 userTextField.setText("");
