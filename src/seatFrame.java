@@ -208,7 +208,7 @@ class Seat extends JFrame implements ActionListener{
             } else if(((Integer) jumlahSeatReg + (Integer) jumlahSeatSweet) > seat){
                 JOptionPane.showMessageDialog(this, "Please select only " + seat + " seat");
             } else if(((Integer) jumlahSeatReg + (Integer) jumlahSeatSweet) < seat){
-                JOptionPane.showMessageDialog(this, "Please select " + (seat - (Integer) jumlahSeatReg - (Integer) jumlahSeatSweet) + " more seat please!");
+                JOptionPane.showMessageDialog(this, "Select " + (seat - (Integer) jumlahSeatReg - (Integer) jumlahSeatSweet) + " more seat please!");
             }
         } else if(button.getBackground() != Color.RED){
             // Check which type of seat was selected and handle accordingly
@@ -244,6 +244,7 @@ class Seat extends JFrame implements ActionListener{
                     if(choice == JOptionPane.YES_OPTION){
                         button.setBackground(Color.GREEN);
                         jumlahSeatSweet++;
+                        selectedSeat.add(buttonText);
                         // Select all the seats in the sweetbox and mark them as reserved
                         for(String s : sweetBox){
                             Component[] components = panel.getComponents();
@@ -252,7 +253,7 @@ class Seat extends JFrame implements ActionListener{
                                     JButton btn = (JButton)component;
                                     if(btn.getText().equals(s)){
                                         btn.setBackground(Color.GREEN);
-                                        selectedSeat.add(buttonText);
+//                                        selectedSeat.add(buttonText);
                                     }
                                 }
                             }
