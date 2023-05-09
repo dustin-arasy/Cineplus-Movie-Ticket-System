@@ -99,7 +99,7 @@ class SessionTime extends JFrame implements ActionListener{
             String date = String.format("%tF", calendar.getDate());
             String selectedSession = (String) sessionComboBox.getSelectedItem();
 //            System.out.println("Selected session: " + selectedSession);
-            String selected = date + " " + selectedSession + " " + totalSeats + "seat";
+            String selected = date + " " + selectedSession + " " + totalSeats + " seat";
 
             // Add selected data to the list
             savedDate.add(date);
@@ -112,7 +112,7 @@ class SessionTime extends JFrame implements ActionListener{
                 // Show message to the user
                 JOptionPane.showMessageDialog(this, "Selected data: " + selected);
                 // move to next screen
-                new Seat(filmList, Users, citylist, bioskopList, savedDate, savedSession, savedSeat, bookedSeat);
+                new Seat(filmList, Users, citylist, bioskopList, savedDate, savedSession, savedSeat, bookedSeat, totalSeats);
                 dispose();
             }
         }

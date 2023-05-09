@@ -76,8 +76,12 @@ class Seat extends JFrame implements ActionListener{
     private ArrayList<String> citylist;
     private ArrayList<String> bioskopList;
     private ArrayList<String> filmList;
-    Integer seat = 0;
-    public Seat(ArrayList<String> listFilm , ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop, ArrayList<String> savedDate, ArrayList<String> savedSession, ArrayList<Integer> savedSeat, ArrayList<JButton> bookedSeat){
+    int seat = 0;
+    int total = 0;
+    int jumlahSeatReg = 0;
+    int jumlahSeatSweet = 0;
+    Integer seats = 0;
+    public Seat(ArrayList<String> listFilm , ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop, ArrayList<String> savedDate, ArrayList<String> savedSession, ArrayList<Integer> savedSeat, ArrayList<JButton> bookedSeat, int totalSeats){
         Users = users;
         citylist = listCity;
         bioskopList = listBioskop;
@@ -85,7 +89,7 @@ class Seat extends JFrame implements ActionListener{
         savedDates = savedDate;
         savedSessions = savedSession;
         savedSeats = savedSeat;
-//        seat = savedSeat;
+        seat = totalSeats;
         this.selectedSeat = selectedSeat;
         this.bookedSeat = bookedSeat;
         int a = 0, b = 0, c = 0, d = 0;
@@ -170,12 +174,11 @@ class Seat extends JFrame implements ActionListener{
         JButton button = (JButton)e.getSource();
         String buttonText = button.getText();
         Color originalColor = button.getBackground();
-        Integer jumlahSeatReg = 0, jumlahSeatSweet = 0;
 
 
         if(buttonText.equals("Next")){
-            Integer total = jumlahSeatReg + jumlahSeatSweet;
-//            if(total = seat) {
+            System.out.println(seat + " " + jumlahSeatReg + " " + jumlahSeatSweet);
+            if(((Integer) jumlahSeatReg + (Integer) jumlahSeatSweet) == seat) {
                 for (int i = 0; i < btnRegular.length; i++) {
                     if (btnRegular[i].getBackground() == Color.GREEN) {
                         btnRegular[i].setBackground(Color.RED);
@@ -202,11 +205,11 @@ class Seat extends JFrame implements ActionListener{
                 }
                 new transactionFrame(Users, citylist, bioskopList, filmList, savedDates, savedSessions, savedSeats, bookedSeat, selectedSeat);
                 dispose();
-//            } else if(total > seat){
-//                JOptionPane.showMessageDialog("Please select only" + seat + "seat");
-//            } else{
-//                JOptionPane.showMessageDialog("Please select" + (seat - total) + "more seat please!");
-//            }
+            } else if(((Integer) jumlahSeatReg + (Integer) jumlahSeatSweet) > seat){
+                JOptionPane.showMessageDialog(this, "Please select only " + seat + " seat");
+            } else if(((Integer) jumlahSeatReg + (Integer) jumlahSeatSweet) < seat){
+                JOptionPane.showMessageDialog(this, "Please select " + (seat - (Integer) jumlahSeatReg - (Integer) jumlahSeatSweet) + " more seat please!");
+            }
         } else if(button.getBackground() != Color.RED){
             // Check which type of seat was selected and handle accordingly
             if(Arrays.asList(regularLeft).contains(buttonText) || Arrays.asList(regular).contains(buttonText)|| Arrays.asList(regularRight).contains(buttonText)){
@@ -214,7 +217,8 @@ class Seat extends JFrame implements ActionListener{
                     int choice = JOptionPane.showConfirmDialog(this, "Do you want to cancel this seat?");
                     if(choice == JOptionPane.YES_OPTION){
                         button.setBackground(Color.LIGHT_GRAY);
-                        jumlahSeatReg --;
+                        selectedSeat.remove(buttonText);
+                        jumlahSeatReg--;
                     }
                 }
                 else{
@@ -231,6 +235,7 @@ class Seat extends JFrame implements ActionListener{
                     int choice = JOptionPane.showConfirmDialog(this, "Do you want to cancel this seat?");
                     if(choice == JOptionPane.YES_OPTION){
                         button.setBackground(Color.LIGHT_GRAY);
+                        selectedSeat.remove(buttonText);
                         jumlahSeatSweet--;
                     }
                 }
@@ -238,6 +243,7 @@ class Seat extends JFrame implements ActionListener{
                     int choice = JOptionPane.showConfirmDialog(this, "Do you want to select this sweetbox?");
                     if(choice == JOptionPane.YES_OPTION){
                         button.setBackground(Color.GREEN);
+                        jumlahSeatSweet++;
                         // Select all the seats in the sweetbox and mark them as reserved
                         for(String s : sweetBox){
                             Component[] components = panel.getComponents();
@@ -247,7 +253,6 @@ class Seat extends JFrame implements ActionListener{
                                     if(btn.getText().equals(s)){
                                         btn.setBackground(Color.GREEN);
                                         selectedSeat.add(buttonText);
-                                        jumlahSeatSweet++;
                                     }
                                 }
                             }
