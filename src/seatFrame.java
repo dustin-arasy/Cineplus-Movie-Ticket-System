@@ -76,6 +76,8 @@ class Seat extends JFrame implements ActionListener{
     private ArrayList<String> citylist;
     private ArrayList<String> bioskopList;
     private ArrayList<String> filmList;
+    private ArrayList<Integer> numberOfSeatReg = new ArrayList<Integer>();
+    private ArrayList<Integer> numberOfSeatSweet = new ArrayList<Integer>();
     int seat = 0;
     int total = 0;
     int jumlahSeatReg = 0;
@@ -203,7 +205,9 @@ class Seat extends JFrame implements ActionListener{
                         bookedSeat.add(btnSweetBox[i]);
                     }
                 }
-                new transactionFrame(Users, citylist, bioskopList, filmList, savedDates, savedSessions, savedSeats, bookedSeat, selectedSeat);
+                new transactionFrame(Users, citylist, bioskopList, filmList, savedDates, savedSessions, savedSeats, bookedSeat, selectedSeat, jumlahSeatReg, jumlahSeatSweet);
+                System.out.println(jumlahSeatReg);
+                System.out.println(jumlahSeatSweet);
                 dispose();
             } else if(((Integer) jumlahSeatReg + (Integer) jumlahSeatSweet) > seat){
                 JOptionPane.showMessageDialog(this, "Please select only " + seat + " seat");

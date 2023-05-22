@@ -17,10 +17,12 @@ class Transaction extends JFrame implements ActionListener {
     private ArrayList<JButton> bookedSeats = new ArrayList<JButton>();
     private JButton exitButton = new JButton("⛔");
     private ArrayList<User> Users;
+    private int jumlahRegs;
+    private int jumlahSweets;
     Container container = getContentPane();
     int check = 0;
 
-    Transaction(ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop, ArrayList<String> listFilm, ArrayList<String> savedDate, ArrayList<String> savedSession, ArrayList<Integer> savedSeat, ArrayList<JButton> bookedSeat, ArrayList<String> selectedSeat){
+    Transaction(ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop, ArrayList<String> listFilm, ArrayList<String> savedDate, ArrayList<String> savedSession, ArrayList<Integer> savedSeat, ArrayList<JButton> bookedSeat, ArrayList<String> selectedSeat, int jumlahReg, int jumlahSweet){
         Users = users;
         citylist = listCity;
         bioskopList = listBioskop;
@@ -30,12 +32,16 @@ class Transaction extends JFrame implements ActionListener {
         savedSeats = savedSeat;
         selectedSeats = selectedSeat;
         bookedSeats = bookedSeat;
+        jumlahRegs = jumlahReg;
+        jumlahSweets = jumlahSweet;
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
         addActionEvent();
         setBgphoto();
         setSizeText();
+        System.out.println(jumlahRegs);
+        System.out.println(jumlahSweets);
     }
 
     private JLabel transactionTitle = new JLabel("CINEPLUS+ TRANSACTION REPORT");
@@ -99,7 +105,7 @@ class Transaction extends JFrame implements ActionListener {
         qtyTitle.setText("Quantity         : " + savedSeats.get(0));
         String tempSeat = selectedSeats.toString();
         seatTitle.setText("Number Seat     : " + tempSeat);
-        int tempNum = savedSeats.get(0) * 30000;
+        int tempNum = (jumlahRegs * 30000) + (jumlahSweets * 35000);
         totalPriceTitle.setText("Total Price         : " + tempNum);
         payButton.setFocusable(false);
         payButton.setContentAreaFilled(true);
@@ -173,7 +179,7 @@ class Transaction extends JFrame implements ActionListener {
         if(e.getSource() == payButton){
             String moneyDeposit = depositMoneyTextfield.getText();
             int amountMoney = Integer.parseInt(moneyDeposit);
-            int tempNum = savedSeats.get(0) * 30000;
+            int tempNum = (jumlahRegs * 30000) + (jumlahSweets * 35000);
             int amountChange = amountMoney - tempNum;
             String moneyAmountChange = Integer.toString(amountChange);
             if(amountChange < 0) {
@@ -195,9 +201,9 @@ class Transaction extends JFrame implements ActionListener {
 
 public class transactionFrame {
 
-    public transactionFrame(ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop, ArrayList<String> listFilm, ArrayList<String> savedDate, ArrayList<String> savedSession, ArrayList<Integer> savedSeat,ArrayList<JButton> bookedSeat,  ArrayList<String> selectedSeat){
+    public transactionFrame(ArrayList<User> users, ArrayList<String> listCity, ArrayList<String> listBioskop, ArrayList<String> listFilm, ArrayList<String> savedDate, ArrayList<String> savedSession, ArrayList<Integer> savedSeat,ArrayList<JButton> bookedSeat,  ArrayList<String> selectedSeat, int jumlahReg, int jumlahSweet){
 
-        Transaction frame = new Transaction(users, listCity, listBioskop, listFilm, savedDate, savedSession, savedSeat, bookedSeat, selectedSeat);
+        Transaction frame = new Transaction(users, listCity, listBioskop, listFilm, savedDate, savedSession, savedSeat, bookedSeat, selectedSeat, jumlahReg, jumlahSweet);
         frame.setTitle("CINEPLUS+");
         frame.setVisible(true);
         frame.setBounds(10, 10, 1650, 1080);
