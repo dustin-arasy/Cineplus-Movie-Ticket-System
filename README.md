@@ -8,34 +8,30 @@
 </tr>
 </table>
 
-## Site
 
-### Homepage
-![](https://dustin-arasy.github.io/Cineplus-Movie-Ticket-System/src/Images/Demo/Homepage.PNG)
+## Homepage
+![](src/Images/Demo/Homepage.png)
 
-### Register Page
-![](https://dustin-arasy.github.io/Cineplus-Movie-Ticket-System/src/Images/Demo/Register.PNG)
+## Register Page
+![](src/Images/Demo/Register.png)
 
-### Login Page
-![](https://dustin-arasy.github.io/Cineplus-Movie-Ticket-System/src/Images/Demo/Login.PNG)
-
-## City List Page
-![](https://dustin-arasy.github.io/Cineplus-Movie-Ticket-System/src/Images/Demo/CityList.PNG)
+## Login Page
+![](src/Images/Demo/Login.png)
 
 ## City List Page
-![](https://dustin-arasy.github.io/Cineplus-Movie-Ticket-System/src/Images/Demo/CityList.PNG)
+![](src/Images/Demo/CityList.png)
 
 ## Film List Page
-![](https://dustin-arasy.github.io/Cineplus-Movie-Ticket-System/src/Images/Demo/FilmList.PNG)
+![](src/Images/Demo/FilmList.png)
 
 ## Session Time Page
-![](https://dustin-arasy.github.io/Cineplus-Movie-Ticket-System/src/Images/Demo/SessionTime.PNG)
+![](src/Images/Demo/SessionTime.png)
 
 ## Seat Page
-![](https://dustin-arasy.github.io/Cineplus-Movie-Ticket-System/src/Images/Demo/Seat.PNG)
+![](src/Images/Demo/Seat.png)
 
 ## Payment Page
-![](https://dustin-arasy.github.io/Cineplus-Movie-Ticket-System/src/Images/Demo/Payment.PNG)
+![](src/Images/Demo/Payment.png)
 
 
 ## Team
@@ -44,6 +40,5 @@
 - Ruth Timorah
 
 ## License
-
 Copyright © [Dustin Arasy ](https://github.com/dustin-arasy)
 
