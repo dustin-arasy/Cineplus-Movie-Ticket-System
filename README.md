@@ -1,4 +1,4 @@
-# ![CinePlus+](https://dustin-arasy.github.io/Cineplus-Movie-Ticket-System/src/Images/Demo/Homepage.PNG)
+# ![CinePlus+](src/Images/Demo/Homepage.png)
 # CinePlus+
 <table>
 <tr>
